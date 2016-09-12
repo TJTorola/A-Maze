@@ -1,7 +1,7 @@
 # Maze Solver/Visualizer
 * [View Wireframe][wireframe]
 
-[wireframe.png]: wireframe
+[wireframe]: wireframe.png
 
 ## Minimum Viable Product
 
