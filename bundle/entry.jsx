@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-doument.addEventListener('DOMContentLoaded', () => {
-	let body = document.querySelector('body');
-	ReactDom.render(<div>Here</div>, body);
+import App from 'components/app';
+
+document.addEventListener('DOMContentLoaded', () => {
+	let rootEl = document.querySelector('.Root');
+	ReactDom.render(<App />, rootEl);
 });
