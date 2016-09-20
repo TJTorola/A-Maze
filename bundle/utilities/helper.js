@@ -30,3 +30,9 @@ export const resizeCanvas = () => {
 	resizeCanvas();
 	return resizeCanvas;
 }
+
+export const transpose = mtx => mtx[0].map(
+	(_, i) => (
+		mtx.map(row => row[i])
+	)
+)

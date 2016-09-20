@@ -1,7 +1,16 @@
 import * as helper from './helper';
-import Renderer from 'lib/render/grid';
+import Grid from 'lib/render/grid';
 
-export const renderGrid = (resolution = 10) => {
-	const renderer = new Renderer(helper.getContext(), resolution);
-	renderer.dotGrid();
+export default class {
+	constructor(resolution = 60) {
+		this.grid = new Grid(helper.getContext(), resolution);
+	}
+
+	render(func, pos = null, ...args) {
+		this.grid.render(func, pos, ...args);
+	}
+
+	clear() {
+		this.grid.clear();
+	}
 }
