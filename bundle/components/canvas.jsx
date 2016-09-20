@@ -1,15 +1,10 @@
 import React from 'react';
 
+import { resizeCanvas } from 'utilities/helper';
+
 export default class extends React.Component {
 	componentDidMount() {
-		const canvas = document.querySelector('.Canvas');
-		const resizeCanvas = () => {
-			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight;
-		}
-
-		resizeCanvas();
-		window.addEventListener('resize', resizeCanvas, false);
+		window.addEventListener('resize', resizeCanvas(), false);
 	}
 
 	render() {
