@@ -9,13 +9,11 @@ export default class {
 		this.bottomRight = [topLeft[0] + size, topLeft[1] + size];
 	}
 
-	dotCorners() {
-		const { context } = this;
+	fill(style = "black") {
+		const { topLeft, size, context } = this;
 
-		context.beginPath();
-		context.arc(...this.topLeft, 1, 0, 2 * Math.PI, false);
-		context.fillStyle = 'black';
-		context.fill();
+		context.fillStyle = style;
+		context.fillRect(...topLeft, size, size);
 	}
 
 	drawLine(to, from) {
@@ -27,14 +25,7 @@ export default class {
 		context.stroke();
 	}
 
-	fill(style = "black") {
-		const { topLeft, size, context } = this;
-
-		context.fillStyle = style;
-		context.fillRect(...topLeft, size, size);
-	}
-
-	top() {
+	up() {
 		this.drawLine(this.topLeft, this.topRight);
 	}
 
@@ -42,7 +33,7 @@ export default class {
 		this.drawLine(this.topRight, this.bottomRight);
 	}
 
-	bottom() {
+	down() {
 		this.drawLine(this.bottomRight, this.bottomLeft);
 	}
 

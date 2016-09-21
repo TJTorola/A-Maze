@@ -4,16 +4,15 @@ import { transpose } from 'utilities/helper';
 import Cell from './cell';
 
 export default class {
-	constructor(context, resolution, margin = 40) {
+	constructor(context, cellSize = 30, margin = 0) {
 		this.context    = context;
-		this.resolution = resolution;
 		this.margin     = margin;
 		this.grid       = [];
+		this.cellSize   = cellSize;
 
 		const { clientWidth, clientHeight } = context.canvas
-		this.cellSize = (clientHeight - this.margin * 2) / this.resolution;
-		this.height = this.resolution;
-		this.width = Math.floor((clientWidth - this.margin * 2) / this.cellSize);
+		this.height = clientHeight / cellSize;
+		this.width  = clientWidth / cellSize;
 
 		context.translate(this.margin, this.margin);
 
@@ -55,6 +54,13 @@ export default class {
 		cells.forEach(cell => {
 			cell[func](...args);
 		});
+	}
+
+	fillGrid() {
+		this.render('left', [0, null]);
+		this.render('up', [null, 0]);
+		this.render('right');
+		this.render('down');
 	}
 
 	clear() {

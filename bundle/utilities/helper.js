@@ -17,7 +17,13 @@ export const gcm = (left, right) => {
 
 export const getContext = () => {
 	const canvas = document.querySelector('.Canvas');
-	return canvas.getContext('2d');
+	const context = canvas.getContext('2d');
+
+	// For HDP displays
+	const scale = window.devicePixelRatio;
+	context.scale(scale, scale);
+
+	return context;
 }
 
 export const resizeCanvas = () => {
