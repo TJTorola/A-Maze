@@ -1,9 +1,16 @@
+import Display from 'lib/display/maze';
+
 export default class {
-	constructor(width = 10, height = 10) {
-		this.width  = width;
-		this.height = height;
+	constructor() {
+		this.display = new Display();
+		this.width  = this.display.width;
+		this.height = this.display.height;
 
 		this.buildGrid();
+	}
+
+	render() {
+		this.display.render(this);
 	}
 
 	buildGrid() {
@@ -32,6 +39,8 @@ export default class {
 	addStatus(status, pos) {
 		const cell = this.grid[pos[0]][pos[1]];
 		cell.status.push(status);
+
+		this.display.diff(pos);
 	}
 
 	removeStatus(status, pos) {
@@ -41,6 +50,8 @@ export default class {
 		if (idx > -1) {
 			cell.status.splice(idx, 1);
 		}
+
+		this.display.diff(pos);
 	}
 
 	removeWall(wall, pos) {
@@ -50,5 +61,7 @@ export default class {
 		if (idx > -1) {
 			cell.walls.splice(idx, 1);
 		}
+
+		this.display.diff(pos);
 	}
 }

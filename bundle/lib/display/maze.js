@@ -1,21 +1,32 @@
 import { flatten } from 'lodash';
 
 import { getContext } from 'utilities/helper';
+import { COLORS } from 'utilities/constants';
 import Display from './grid';
-import Grid from 'lib/maze/grid';
-
-const COLOR = {
-	'unvisited' : '#000'
-}
 
 export default class {
 	constructor() {
 		this.display = new Display(getContext());
 		this.width = this.display.width;
 		this.height = this.display.height;
+		this.diffs = [];
+	}
+
+	diff(pos) {
+		if (this.diffs.indexOf(pos) == -1) {
+			this.diffs.push(pos);
+		}
 	}
 
 	render({ grid }) {
+		if (this.diffs.length === 0) {
+			this.renderAll(grid);
+		} else {
+			this.renderDiff(grid);
+		}
+	}
+
+	renderAll(grid) {
 		let cell;
 
 		this.display.clear();
@@ -27,11 +38,24 @@ export default class {
 		}
 	}
 
+	renderDiff(grid) {
+		let cell;
+
+		this.diffs.forEach(diff => {
+			cell = grid[diff[0]][diff[1]];
+			this.renderCell(cell, diff);
+		});
+
+		this.diffs = [];
+	}
+
 	renderCell(cell, pos) {
 		const display = this.display;
+		let color;
 
 		if (cell.status.length > 0) {
-			display.render('fill', pos, COLOR[cell.status[-1]]);
+			color = COLORS[cell.status[cell.status.length - 1]];
+			display.render('fill', pos, color);
 		} else {
 			display.render('fill', pos, 'white');
 		}

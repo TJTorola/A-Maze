@@ -20,8 +20,8 @@ export const getContext = () => {
 	const context = canvas.getContext('2d');
 
 	// For HDP displays
-	const scale = window.devicePixelRatio;
-	context.scale(scale, scale);
+	// const scale = window.devicePixelRatio;
+	// context.scale(scale, scale);
 
 	return context;
 }
