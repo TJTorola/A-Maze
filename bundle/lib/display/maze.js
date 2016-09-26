@@ -55,6 +55,7 @@ export default class {
 
 		if (cell.status.length > 0) {
 			color = COLORS[cell.status[cell.status.length - 1]];
+			color = color || cell.status[cell.status.length - 1];
 			display.render('fill', pos, color);
 		} else {
 			display.render('fill', pos, 'white');

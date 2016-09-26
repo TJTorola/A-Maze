@@ -6,6 +6,8 @@ export default class extends Tool {
 		super(controller);
 
 		this.stack = [start];
+		this.visited = {};
+		this.visited[start] = true;
 	}
 
 	unblockedDirs(pos) {
@@ -19,35 +21,35 @@ export default class extends Tool {
 		return unblocked;
 	}
 
-	possibleDirs(pos, className) {
+	possiblePos(pos, className) {
 		const { grid } = this.grid;
-		let cell, delta;
+		let newPos, delta;
 		let possible = [];
 		
 		this.unblockedDirs(pos).forEach(dir => {
 			delta = DIR_DATA[dir].delta;
-			cell = grid[pos[0] + delta[0]][pos[1] + delta[1]];
+			newPos = [pos[0] + delta[0], pos[1] + delta[1]];
 
-			if (!cell.status.includes(className)) {
-				possible.push(dir);
+			if (!this.visited[newPos]) {
+				possible.push(newPos);
 			}
 		});
 
 		return possible;
 	}
 
-	ooze(className = 'spread', val = 0) {
+	ooze(className, val = 0) {
 		let delta, newPos;
 		const sources = this.stack;
 		this.stack = [];
 
 		sources.forEach(pos => {
-			this.possibleDirs(pos, className).forEach(dir => {
-				delta = DIR_DATA[dir].delta;
-				newPos = [pos[0] + delta[0], pos[1] + delta[1]];
-
-				this.addStatus('spread', newPos);
+			this.possiblePos(pos, className).forEach(newPos => {
+				if (className) {
+					this.addStatus(className, newPos);
+				}
 				this.stack.push(newPos);
+				this.visited[newPos] = true;
 			});
 		});
 	}

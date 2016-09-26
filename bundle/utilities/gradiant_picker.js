@@ -1,8 +1,4 @@
-const GRADIANT = {
-	0 : '#ffffff',
-	50 : '#ffc107',
-	100 : '#000000'
-}
+import { DEFAULT_GRADIANT } from './constants';
 
 const toPercent = (value, max) => {
 	if (value >= max) { return 100; }
@@ -76,7 +72,7 @@ const getRgb = (lower, upper, ratio) => {
 	return rgb;
 }
 
-export default (max = 100, gradiant = GRADIANT) => value => {
+export default (max = 100, gradiant = DEFAULT_GRADIANT) => value => {
 	const percent = toPercent(value, max);
 	const { lower, upper } = getBounds(percent, gradiant);
 	if (lower === null) { return gradiant[upper]; }

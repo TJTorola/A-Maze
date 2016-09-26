@@ -22,3 +22,15 @@ export const COLORS = {
 	'exploring' : '#AAA',
 	'spread'    : '#53ff9a'
 }
+
+export const DEFAULT_GRADIANT = {
+	0   : '#ffffd9',
+	12  : '#edf8b1',
+	25  : '#c7e9b4',
+	37  : '#7fcdbb',
+	50  : '#41b6c4',
+	62  : '#1d91c0',
+	75  : '#225ea8',
+	87  : '#253494',
+	100 : '#081d58',
+}
