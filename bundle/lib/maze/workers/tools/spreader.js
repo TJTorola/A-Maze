@@ -6,11 +6,10 @@ export default class extends Tool {
 		super(controller);
 
 		this.stack = [start];
-		this.removeStatus('unvisited');
 	}
 
 	unblockedDirs(pos) {
-		const cell = this.grid[pos[0]][pos[1]];
+		const cell = this.grid.grid[pos[0]][pos[1]];
 		const unblocked = [];
 
 		[ 'up', 'right', 'down', 'left' ].forEach(dir => {
@@ -21,7 +20,6 @@ export default class extends Tool {
 	}
 
 	possibleDirs(pos, className) {
-		const { pos } = this;
 		const { grid } = this.grid;
 		let cell, delta;
 		let possible = [];
@@ -30,7 +28,7 @@ export default class extends Tool {
 			delta = DIR_DATA[dir].delta;
 			cell = grid[pos[0] + delta[0]][pos[1] + delta[1]];
 
-			if (cell.status.indexOf(className) != -1) {
+			if (!cell.status.includes(className)) {
 				possible.push(dir);
 			}
 		});
@@ -46,7 +44,7 @@ export default class extends Tool {
 		sources.forEach(pos => {
 			this.possibleDirs(pos, className).forEach(dir => {
 				delta = DIR_DATA[dir].delta;
-				newPos = [pos[0] + delta[0]][pos[1] + delta[1]];
+				newPos = [pos[0] + delta[0], pos[1] + delta[1]];
 
 				this.addStatus('spread', newPos);
 				this.stack.push(newPos);

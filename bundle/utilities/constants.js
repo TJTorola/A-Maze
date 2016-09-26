@@ -19,5 +19,6 @@ export const DIR_DATA = {
 
 export const COLORS = {
 	'unvisited' : '#000',
-	'exploring' : '#AAA'
+	'exploring' : '#AAA',
+	'spread'    : '#53ff9a'
 }
