@@ -4,7 +4,7 @@ import { transpose } from 'utilities/helper';
 import Cell from './cell';
 
 export default class {
-	constructor(context, cellSize = 30, margin = 0) {
+	constructor(context, cellSize = 6, margin = 0) {
 		this.context    = context;
 		this.margin     = margin;
 		this.grid       = [];
