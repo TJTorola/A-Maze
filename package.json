@@ -32,6 +32,7 @@
     "babel-preset-react": "^6.1.18",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
+    "redux": "^3.5.2",
     "webpack": "^1.12.2"
   }
 }

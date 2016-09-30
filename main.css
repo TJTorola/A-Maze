@@ -26,3 +26,7 @@ nav {
 	background: white;
 	border-right: solid thin black;
 }
+
+svg {
+	height: 20px;
+}
