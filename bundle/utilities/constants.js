@@ -34,3 +34,18 @@ export const DEFAULT_GRADIANT = {
 	87  : '#253494',
 	100 : '#081d58',
 }
+
+export const INITIAL_SPEED = 25
+export const SPEEDS = [
+	1000,
+	500,
+	250,
+	100,
+	50,
+	25,
+	20,
+	10,
+	5,
+	3,
+	1
+]

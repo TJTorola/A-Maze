@@ -5,6 +5,8 @@ import worker from 'reducers/worker';
 import playing from 'reducers/playing';
 import algorithm from 'reducers/algorithm';
 import controller from 'reducers/controller';
+import goingFastest from 'reducers/going_fastest';
+import goingSlowest from 'reducers/going_slowest';
 
 
 export default combineReducers({ 
@@ -12,5 +14,7 @@ export default combineReducers({
 	algorithm,
 	speed,
 	controller,
-	worker
+	worker,
+	goingFastest,
+	goingSlowest
 });
