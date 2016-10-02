@@ -1,18 +1,14 @@
-export const factors = num => {
-	let factors = [];
-	for (let i = Math.floor(num / 2); i > 0; i--) {
-		if (num % i === 0) { factors.push(i); }
-	}
-	return factors;
-}
+export const setCanvas = () => {
+	const canvas = document.querySelector('.Canvas');
 
-export const gcm = (left, right) => {
-	let leftFactors = factors(left);
-	let rightFactors = factors(right);
+	let width  = window.innerWidth - 40;
+	let height = window.innerHeight - 60;
 
-	leftFactors.forEach(factor => {
-		if (rightFactors.includes(factor)) { return factor; }
-	});
+	width  -= width % 60;
+	height -= height % 60;
+
+	canvas.width  = width;
+	canvas.height = height;
 }
 
 export const getContext = () => {

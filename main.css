@@ -13,20 +13,39 @@ canvas {
 }
 
 header {
+	box-sizing: border-box;
 	line-height: 40px;
 	width: 100%;
 	height: 40px;
 	background: white;
 	border-bottom: solid thin black;
+	padding: 0 30px;
 }
 
 nav {
-	width: 300px;
-	height: 100%;
-	background: white;
-	border-right: solid thin black;
+	float: right;
 }
 
 svg {
-	height: 20px;
+	cursor: pointer;
+	padding: 0 5px;
+	height: 1em;
+}
+
+svg:hover {
+	fill: orange;
+}
+
+svg:active {
+	position: relative;
+	top: 1px;
+}
+
+svg.is-disabled {
+	fill: gray;
+	cursor: default;
+}
+
+svg.is-disabled:active {
+	position: static;
 }
