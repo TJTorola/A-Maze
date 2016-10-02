@@ -3,7 +3,7 @@ import React from 'react';
 import Toolbar from './toolbar/main';
 
 export default () => (
-	<div className="App">
+	<div>
 		<Toolbar />
 		<canvas className="Canvas" />
 	</div>
