@@ -13,7 +13,9 @@ const play = ({ dispatch, getState }) => {
 const pause = ({ dispatch, getState }) => {
 	const { worker } = getState();
 
-	worker.stop();
+	if (worker) {
+		worker.stop();
+	}
 	dispatch({ type: "STOPPED" });
 }
 
