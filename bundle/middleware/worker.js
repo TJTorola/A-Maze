@@ -2,7 +2,7 @@ const get = ({ dispatch, getState }) => {
 	const { controller, algorithm } = getState();
 
 	if (controller) {
-		const worker = controller.getWorker(algorithm);
+		const worker = controller.returnWorker(algorithm);
 		dispatch({ type: "SET_WORKER", worker });
 	} else {
 		dispatch({ type: "GET_CONTROLLER" });

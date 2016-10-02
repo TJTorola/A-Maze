@@ -2,27 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Icon from 'utilities/icon';
+import PlayPause from './play_pause';
 
-const mapStateToProps = state => ({
-	playing: state.playing
-});
-
-const mapDispatchToProps = dispatch => ({
-	play: () => dispatch({ type: "PLAY" })
-});
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(props => (
+export default () => (
 	<nav>
 		<Icon i="step_backward" />
 		<Icon i="fast_backward" />
 
-		<Icon i={ props.playing ? 'pause' : 'play' } 
-			onClick={ props.play } />
+		<PlayPause />
 
 		<Icon i="fast_forward" />
 		<Icon i="step_forward" />
 	</nav>
-))
+)
