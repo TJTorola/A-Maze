@@ -4,7 +4,7 @@ import { transpose } from 'utilities/helper';
 import Cell from './cell';
 
 export default class {
-	constructor(context, cellSize = 6, margin = 0) {
+	constructor(context, cellSize = 20, margin = 0) {
 		this.context    = context;
 		this.margin     = margin;
 		this.grid       = [];
@@ -22,10 +22,9 @@ export default class {
 
 	populateGrid() {
 		this.grid = [];
-
 		const { width, height, cellSize, context } = this;
-		let x, y, row;
 
+		let x, y, row;
 		for (let i = 0; i < width; i++) {
 			x = i * cellSize;
 			row = [];

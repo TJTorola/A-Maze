@@ -49,3 +49,11 @@ export const SPEEDS = [
 	3,
 	1
 ]
+
+export const phases = [
+	"INTIALIZED",
+	"GENERATING",
+	"GENERATED",
+	"SOLVING",
+	"SOLVED"
+];
