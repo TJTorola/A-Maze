@@ -50,7 +50,7 @@ export const SPEEDS = [
 	1
 ]
 
-export const phases = [
+export const PHASES = [
 	"INTIALIZED",
 	"GENERATING",
 	"GENERATED",
