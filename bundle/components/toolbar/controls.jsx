@@ -5,15 +5,17 @@ import Icon from 'utilities/icon';
 import PlayPause from './play_pause';
 import Slower from './slower';
 import Faster from './faster';
+import StepBackward from './step_backward';
+import StepForward from './step_forward';
 
 export default () => (
 	<nav>
-		<Icon i="step_backward" />
+		<StepBackward />
 		<Slower />
 
 		<PlayPause />
 
 		<Faster />
-		<Icon i="step_forward" />
+		<StepForward />
 	</nav>
 )
