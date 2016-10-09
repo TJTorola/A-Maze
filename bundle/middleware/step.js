@@ -1,9 +1,11 @@
-const forward = store => {
-	
+const forward = ({ dispatch }) => {
+	dispatch({ type: 'PAUSE' });
+	dispatch({ type: 'NOW' });
+	dispatch({ type: 'NEXT_PHASE' });
 }
 
-const backward = store => { 
-
+const backward = ({ getState }) => { 
+	
 }
 
 export default store => next => action => {
