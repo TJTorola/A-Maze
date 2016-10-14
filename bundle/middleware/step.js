@@ -1,3 +1,14 @@
+const workerNow = ({ getState }) => {
+	const { worker } = getState();
+
+	if (worker) {
+		worker.now();
+	} else {
+		dispatch({ type: "GET_WORKER" });
+		dispatch({ type: "NOW" });
+	}
+}
+
 const forward = ({ dispatch }) => {
 	dispatch({ type: 'PAUSE' });
 	dispatch({ type: 'NOW' });

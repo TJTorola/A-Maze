@@ -19,17 +19,6 @@ const pause = ({ dispatch, getState }) => {
 	dispatch({ type: "STOPPED" });
 }
 
-const now = ({ getState }) => {
-	const { worker } = getState();
-
-	if (worker) {
-		worker.now();
-	} else {
-		dispatch({ type: "GET_WORKER" });
-		dispatch({ type: "NOW" });
-	}
-}
-
 export default store => next => action => {
 	switch (action.type) {
 		case "PLAY":
@@ -37,9 +26,6 @@ export default store => next => action => {
 			break;
 		case "PAUSE":
 			pause(store);
-			break;
-		case "NOW":
-			now(store);
 			break;
 	}
 	return next(action);

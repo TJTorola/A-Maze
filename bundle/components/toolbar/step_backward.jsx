@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Icon from 'utilities/icon';
-import { PHASES } from 'utilities/constants';
+import { PHASE_NAMES } from 'utilities/constants';
 
 const mapStateToProps = state => ({
 	phase: state.phase
@@ -18,7 +18,7 @@ export default connect(
 )(props => (
 	<span>
 		<Icon i="step_backward"
-			className={ props.phase === PHASES[0] ? 'is-disabled' : '' }
+			className={ props.phase === PHASE_NAMES[0] ? 'is-disabled' : '' }
 			onClick={ props.stepBackward } />
 	</span>
 ))

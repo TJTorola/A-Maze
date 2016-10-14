@@ -2,14 +2,12 @@ import { applyMiddleware } from 'redux';
 
 import step from 'middleware/step';
 import speed from 'middleware/speed';
-import player from 'middleware/player';
-import worker from 'middleware/worker';
-import controller from 'middleware/controller';
+import playPause from 'middleware/playPause';
+import connector from 'middleware/connector';
 
 export default applyMiddleware(
-	controller,
-	player,
-	worker,
+	connector,
+	playPause,
 	speed,
 	step
 );
