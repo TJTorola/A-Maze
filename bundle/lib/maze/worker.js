@@ -22,7 +22,7 @@ export default class {
 		if (this.step()) {
 			this.render();
 		} else {
-			this.stop();
+			this.done();
 		}
 	}
 
@@ -35,6 +35,15 @@ export default class {
 			this.steps += 1;
 		}
 
+		this.done();
+	}
+
+	done() {
 		this.render();
+		this.stop();
+
+		if (this.finished) {
+			this.finished();
+		}
 	}
 }

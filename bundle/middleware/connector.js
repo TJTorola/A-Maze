@@ -11,7 +11,9 @@ const getWorker = ({ dispatch, getState }) => {
 
 	if (controller) {
 		const worker = controller.returnWorker(algorithm);
-		dispatch({ type: "SET_WORKER", worker, finished: finished(dispatch) });
+		worker.finished = finished(dispatch);
+
+		dispatch({ type: "SET_WORKER", worker });
 	} else {
 		dispatch({ type: "GET_CONTROLLER" });
 		dispatch({ type: "GET_WORKER" });
