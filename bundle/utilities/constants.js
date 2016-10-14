@@ -50,10 +50,13 @@ export const SPEEDS = [
 	1
 ]
 
-export const PHASES = [
-	"INTIALIZED",
+export const PHASE_NAMES = [
 	"GENERATING",
-	"GENERATED",
-	"SOLVING",
-	"SOLVED"
+	"SOLVING"
+];
+
+export const PHASE_STEPS = [
+	"INITIALIZED",
+	"WORKING",
+	"FINISHED"
 ];

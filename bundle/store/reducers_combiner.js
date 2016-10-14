@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 
+import step from 'reducers/phase/step';
+import name from 'reducers/phase/name';
 import speed from 'reducers/speed';
-import phase from 'reducers/phase';
 import worker from 'reducers/worker';
 import playing from 'reducers/playing';
 import algorithm from 'reducers/algorithm';
@@ -11,7 +12,10 @@ import goingSlowest from 'reducers/going_slowest';
 
 export default combineReducers({ 
 	playing,
-	phase,
+	phase: combineReducers({
+		name,
+		step
+	}),
 	algorithm,
 	speed,
 	controller,
