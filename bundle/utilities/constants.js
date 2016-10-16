@@ -50,13 +50,11 @@ export const SPEEDS = [
 	1
 ]
 
-export const PHASE_NAMES = [
-	"GENERATING",
-	"SOLVING"
-];
-
-export const PHASE_STEPS = [
-	"INITIALIZED",
-	"WORKING",
-	"FINISHED"
-];
+export const ALGORITHMS = {
+	generators: [
+		'DepthFirstGenerator'
+	],
+	solvers: [
+		'BreadthFirstSolver'
+	]
+}
