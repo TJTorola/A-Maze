@@ -8,26 +8,12 @@ export default class extends Worker {
 	constructor(controller, start) {
 		super(controller);
 
-		this.getSteps(controller, start);
 		this.spreader = new Spreader(controller, start);
 		this.value = 0;
-		this.gradiantPicker = GradiantPicker(this.totalSteps);
 	}
 
 	step() {
-		this.spreader.ooze(this.gradiantPicker(this.steps));
+		this.spreader.step();
 		return (this.spreader.stack.length > 0);
-	}
-
-	getSteps(controller, start) {
-		const counter = new Spreader(controller, start);
-		let steps = 0;
-
-		while(counter.stack.length > 0) {
-			counter.ooze();
-			steps++;
-		}
-
-		this.totalSteps = steps;
 	}
 }

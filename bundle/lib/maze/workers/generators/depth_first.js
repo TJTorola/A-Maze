@@ -1,5 +1,5 @@
 import Worker from 'lib/maze/worker';
-import PathMaker from 'lib/maze/workers/tools/path_maker';
+import Builder from 'lib/maze/workers/tools/builder';
 
 import { DIR_DATA } from 'utilities/constants';
 
@@ -7,10 +7,10 @@ export default class extends Worker {
 	constructor(controller, start) {
 		super(controller);
 
-		this.pathMaker = new PathMaker(controller, start);
+		this.builder = new Builder(controller, start);
 		this.stack = [];
 
-		this.pathMaker.addStatus('exploring');
+		this.builder.addStatus('exploring');
 	}
 
 	step() {
@@ -18,24 +18,24 @@ export default class extends Worker {
 	}
 
 	forward() {
-		const moves = this.pathMaker.unvisitedDirs();
+		const moves = this.builder.unvisitedDirs();
 		if (moves.length === 0) { return false; }
 
 		const idx = Math.floor(Math.random() * moves.length);
 		const move = moves[idx];
-		this.pathMaker.move(move);
-		this.pathMaker.addStatus('exploring');
+		this.builder.move(move);
+		this.builder.addStatus('exploring');
 		this.stack.push(DIR_DATA[move].back);
 
 		return true;
 	}
 
 	back() {
-		this.pathMaker.removeStatus('exploring');
+		this.builder.removeStatus('exploring');
 		if (this.stack.length === 0) { return false; }
 
 		const move = this.stack.pop();
-		this.pathMaker.move(move);
+		this.builder.move(move);
 
 		return true;
 	}

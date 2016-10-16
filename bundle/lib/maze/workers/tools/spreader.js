@@ -1,13 +1,33 @@
 import Tool from '../tool';
 import { DIR_DATA } from 'utilities/constants';
+import GradiantPicker from 'utilities/gradiant_picker';
 
-export default class extends Tool {
-	constructor(controller, start) {
+class Spreader extends Tool {
+	constructor(controller, start, getSteps = true) {
 		super(controller);
 
-		this.stack = [start];
+		this.stack = [];
 		this.visited = {};
-		this.visited[start] = true;
+		this.start = start;
+
+		if (getSteps) {
+			this.steps = Spreader.getSteps(controller, start);
+			this.gradiant = GradiantPicker(this.steps);
+		}
+
+		this.step({ pos: start, value: 0 });
+	}
+
+	static getSteps(controller, start) {
+		const counter = new this(controller, start, false);
+		let value, max = 0;
+
+		while(counter.stack.length > 0) {
+			value = counter.step();
+			if (value > max) { max = value; }
+		}
+
+		return max;
 	}
 
 	unblockedDirs(pos) {
@@ -21,7 +41,7 @@ export default class extends Tool {
 		return unblocked;
 	}
 
-	possiblePos(pos, className) {
+	possiblePos(pos) {
 		const { grid } = this.grid;
 		let newPos, delta;
 		let possible = [];
@@ -38,19 +58,22 @@ export default class extends Tool {
 		return possible;
 	}
 
-	ooze(className, val = 0) {
-		let delta, newPos;
-		const sources = this.stack;
-		this.stack = [];
+	step(move = null) {
+		move = move || this.stack.shift();
+		const { pos, value } = move;
 
-		sources.forEach(pos => {
-			this.possiblePos(pos, className).forEach(newPos => {
-				if (className) {
-					this.addStatus(className, newPos);
-				}
-				this.stack.push(newPos);
-				this.visited[newPos] = true;
-			});
+		this.visited[pos] = true;
+		if (this.gradiant) {
+			const color = this.gradiant(value);
+			this.addStatus(color, pos);
+		}
+
+		this.possiblePos(pos).forEach(newPos => {
+			this.stack.push({ pos: newPos, value: value + 1 })
 		});
+
+		return value;
 	}
 }
+
+export default Spreader;

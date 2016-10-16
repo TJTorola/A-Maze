@@ -14,15 +14,14 @@ const mapDispatchToProps = dispatch => ({
 const algorithms = props => {
 	const { generated, setAlgorithm } = props;
 	const list = generated ? ALGORITHMS['solvers'] : ALGORITHMS['generators'];
-	setAlgorithm(list[0]);
 
-	return list.map(algorithm => (
-		<option value={ algorithm }>
+	return list.map((algorithm, id) => (
+		<option value={ algorithm } key={ id }>
 			{ algorithm }()
 		</option>
 	));
 }
-
+8
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
