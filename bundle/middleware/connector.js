@@ -3,7 +3,8 @@ import Controller from 'lib/controller';
 
 const finished = dispatch => () => {
 	dispatch({ type: "PAUSE" });
-	dispatch({ type: "NEXT_PHASE" });
+	dispatch({ type: "FINISHED" });
+	dispatch({ type: "CLEAR_WORKER" });
 };
 
 const getWorker = ({ dispatch, getState }) => {

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Icon from 'utilities/icon';
-import { PHASE_NAMES } from 'utilities/constants';
 
 const mapStateToProps = state => ({
 	phase: state.phase
@@ -12,13 +11,21 @@ const mapDispatchToProps = dispatch => ({
 	stepForward: () => dispatch({ type: "STEP_FORWARD" })
 });
 
+const className = phase => {
+	if (phase.generated && phase.working) {
+		return 'is-disabled';
+	} else {
+		return '';
+	}
+}
+
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(props => (
 	<span>
 		<Icon i="step_forward"
-			className={ props.phase === PHASE_NAMES[PHASE_NAMES.length - 1] ? 'is-disabled' : '' }
+			className={ className(props.phase) }
 			onClick={ props.stepForward } />
 	</span>
 ))
