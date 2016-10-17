@@ -22,6 +22,10 @@ export default class extends Tool {
 		this.removeStatus('unvisited');
 	}
 
+	jump(pos) {
+		this.pos = pos;
+	}
+
 	unvisitedDirs() {
 		const { pos } = this;
 		const { grid } = this.grid;
