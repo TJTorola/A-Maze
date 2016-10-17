@@ -65,6 +65,10 @@ export default class {
 			display.render('fill', pos, 'white');
 		}
 
+		if (cell.bullet > 0) {
+			display.render('bullet', pos, cell.bullet);
+		}
+
 		cell.walls.forEach(wall => {
 			display.render(wall, pos);
 		});

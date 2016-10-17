@@ -21,7 +21,8 @@ export default class {
 		const returnCell = () => ({
 			status : [ 'unvisited' ],
 			walls  : [ 'up', 'right', 'down', 'left' ],
-			value  : null
+			value  : null,
+			bullet : 0
 		});
 
 		const returnRow = length => {
@@ -59,6 +60,13 @@ export default class {
 	setValue(value, pos) {
 		const cell = this.grid[pos[0]][pos[1]];
 		cell.value = value;
+
+		this.display.diff(pos);
+	}
+
+	setBullet(size, pos) {
+		const cell = this.grid[pos[0]][pos[1]];
+		cell.bullet = size;
 
 		this.display.diff(pos);
 	}

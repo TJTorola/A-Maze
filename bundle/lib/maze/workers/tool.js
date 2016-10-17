@@ -31,4 +31,9 @@ export default class {
 		pos = pos || this.pos;
 		this.grid.setValue(value, pos);
 	}
+
+	setBullet(size, pos = null) {
+		pos = pos || this.pos;
+		this.grid.setBullet(value, pos);
+	}
 }
