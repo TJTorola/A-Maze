@@ -16,7 +16,7 @@ const getBounds = (percent, gradiant) => {
 	let [lower, upper] = [null, null];
 	let bound;
 
-	for (var i = 0; i < bounds.length; i++) {
+	for (let i = 0; i < bounds.length; i++) {
 		bound = bounds[i];
 
 		lower = upper;
@@ -81,7 +81,7 @@ export default (max = 100, gradiant = DEFAULT_GRADIANT) => value => {
 	const lowerRgb = hexToRgb(gradiant[lower]);
 	const upperRgb = hexToRgb(gradiant[upper]);
 
-	const ratio = getRatio(percent, { lower, upper});
+	const ratio = getRatio(percent, {lower, upper});
 
 	const rgb = getRgb(lowerRgb, upperRgb, ratio);
 	return rgbToHex(rgb);
