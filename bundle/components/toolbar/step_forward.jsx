@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const className = phase => {
-	if (phase.generated && phase.working) {
+	if (phase.solved) {
 		return 'is-disabled';
 	} else {
 		return '';

@@ -1,28 +1,19 @@
-const workerNow = ({ getState }) => {
+const finishNow = ({ getState, dispatch }) => {
 	const { worker } = getState();
 
 	if (worker) {
+		worker.stop();
 		worker.now();
 	} else {
 		dispatch({ type: "GET_WORKER" });
-		dispatch({ type: "NOW" });
+		dispatch({ type: "STEP_FORWARD" });
 	}
-}
-
-const forward = ({ dispatch }) => {
-	dispatch({ type: 'PAUSE' });
-	dispatch({ type: 'NOW' });
-	dispatch({ type: 'NEXT_PHASE' });
-}
-
-const backward = ({ getState }) => { 
-	
 }
 
 export default store => next => action => {
 	switch (action.type) {
 		case "STEP_FORWARD":
-			forward(store);
+			finishNow(store);
 			break;
 		case "STEP_BACKWARD":
 			backward(store);

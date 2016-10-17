@@ -10,11 +10,13 @@ import goingSlowest from 'reducers/going_slowest';
 
 import phaseGenerated from 'reducers/phase/generated';
 import phaseWorking from 'reducers/phase/working';
+import phaseSolved from 'reducers/phase/solved';
 
 export default combineReducers({ 
 	playing,
 	phase: combineReducers({
 		generated: phaseGenerated,
+		solved: phaseSolved,
 		working: phaseWorking
 	}),
 	algorithm,

@@ -1,18 +1,20 @@
 import { setCanvas } from 'utilities/helper';
 import Controller from 'lib/controller';
 
-const finished = dispatch => () => {
+const finished = (dispatch, generated) => () => {
+	const type = generated ? "SOLVED" : "GENERATED";
+
 	dispatch({ type: "PAUSE" });
-	dispatch({ type: "FINISHED" });
+	dispatch({ type });
 	dispatch({ type: "CLEAR_WORKER" });
 };
 
 const getWorker = ({ dispatch, getState }) => {
-	const { controller, algorithm } = getState();
+	const { controller, algorithm, phase } = getState();
 
 	if (controller) {
 		const worker = controller.returnWorker(algorithm);
-		worker.finished = finished(dispatch);
+		worker.finished = finished(dispatch, phase.generated);
 
 		dispatch({ type: "SET_WORKER", worker });
 	} else {
