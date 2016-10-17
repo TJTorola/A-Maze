@@ -13,27 +13,40 @@ export default class {
 		this.display.render(this);
 	}
 
+	clear() {
+		this.display.clear();
+	}
+
 	buildGrid() {
 		const returnCell = () => ({
 			status : [ 'unvisited' ],
 			walls  : [ 'up', 'right', 'down', 'left' ],
-			char   : ''
+			value  : null
 		});
 
 		const returnRow = length => {
 			let row = [];
-			for (var i = 0; i < length; i++) {
+			for (let i = 0; i < length; i++) {
 				row.push(returnCell())
 			}
 			return row;
 		}
 
 		let grid = [];
-		for (var i = 0; i < this.width; i++) {
+		for (let i = 0; i < this.width; i++) {
 			grid.push(returnRow(this.height));
 		}
 
 		this.grid = grid;
+	}
+
+	cleanGrid() {
+		for (let x = 0; x < this.width; x++) {
+			for (let y = 0; y < this.height; y++) {
+				this.clearStatus([x, y]);
+				this.setValue(null, [x, y]);
+			}
+		}
 	}
 
 	addStatus(status, pos) {
@@ -43,13 +56,27 @@ export default class {
 		this.display.diff(pos);
 	}
 
-	removeStatus(status, pos) {
+	setValue(value, pos) {
+		const cell = this.grid[pos[0]][pos[1]];
+		cell.value = value;
+
+		this.display.diff(pos);
+	}
+
+	removeStatus(status = null, pos) {
 		const cell = this.grid[pos[0]][pos[1]];
 		const idx = cell.status.indexOf(status);
 
 		if (idx > -1) {
 			cell.status.splice(idx, 1);
 		}
+
+		this.display.diff(pos);
+	}
+
+	clearStatus(pos) {
+		const cell = this.grid[pos[0]][pos[1]];
+		cell.status = [];
 
 		this.display.diff(pos);
 	}

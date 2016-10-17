@@ -23,7 +23,7 @@ class Spreader extends Tool {
 		let value, max = 0;
 
 		while(counter.stack.length > 0) {
-			value = counter.step();
+			value = counter.step().value;
 			if (value > max) { max = value; }
 		}
 
@@ -63,6 +63,7 @@ class Spreader extends Tool {
 		const { pos, value } = move;
 
 		this.visited[pos] = true;
+		this.setValue(value, pos);
 		if (this.gradiant) {
 			const color = this.gradiant(value);
 			this.addStatus(color, pos);
@@ -72,7 +73,7 @@ class Spreader extends Tool {
 			this.stack.push({ pos: newPos, value: value + 1 })
 		});
 
-		return value;
+		return move;
 	}
 }
 

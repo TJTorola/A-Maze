@@ -10,4 +10,13 @@ export default class {
 		const worker = new WORKERS[type](this, start);
 		return worker;
 	}
+
+	cleanGrid() {
+		this.grid.cleanGrid();
+		this.grid.render();
+	}
+
+	clear() {
+		this.grid.clear();
+	}
 }

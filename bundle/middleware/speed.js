@@ -1,7 +1,6 @@
 import { SPEEDS } from 'utilities/constants';
 
 const faster = ({ dispatch, getState }) => {
-	dispatch({ type: "GOING_SLOWEST", state: false });
 	const { speed, goingFastest } = getState();
 
 	if (!goingFastest) {
@@ -15,7 +14,6 @@ const faster = ({ dispatch, getState }) => {
 }
 
 const slower = ({ dispatch, getState }) => {
-	dispatch({ type: "GOING_FASTEST", state: false });
 	const { speed, goingSlowest } = getState();
 
 	if (!goingSlowest) {
@@ -30,9 +28,9 @@ const slower = ({ dispatch, getState }) => {
 
 const checkSpeed = ({ dispatch }, { speed }) => {
 	if (speed === SPEEDS[0]) {
-		dispatch({ type: "GOING_SLOWEST", state: true });
+		dispatch({ type: "SLOWEST" });
 	} else if (speed === SPEEDS[SPEEDS.length - 1]) {
-		dispatch({ type: "GOING_FASTEST", state: true });
+		dispatch({ type: "FASTEST" });
 	}
 }
 

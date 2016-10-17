@@ -26,4 +26,9 @@ export default class {
 		pos = pos || this.pos;
 		this.grid.removeStatus(status, pos);
 	}
+
+	setValue(value, pos = null) {
+		pos = pos || this.pos;
+		this.grid.setValue(value, pos);
+	}
 }

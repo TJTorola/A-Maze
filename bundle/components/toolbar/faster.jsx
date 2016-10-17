@@ -4,30 +4,33 @@ import { connect } from 'react-redux';
 import Icon from 'utilities/icon';
 
 const mapStateToProps = state => ({
-	goingFastest : state.goingFastest,
-	solved       : state.phase.solved
+	disabled : state.goingFastest || state.phase.solved
 });
 
 const mapDispatchToProps = dispatch => ({
 	faster  : () => dispatch({ type: "FASTER" })
 });
 
-const className = props => {
-	const { goingFastest, solved } = props;
-	if (solved || goingFastest) {
+const className = disabled => {
+	if (disabled) {
 		return 'is-disabled';
 	} else {
 		return '';
 	}
 }
 
+const blocker = (callback, block) => () => {
+	if (block) { () => {} }
+	else { callback(); }
+}
+
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(props => (
+)(({ disabled, faster }) => (
 	<span>
 		<Icon i="fast_forward"
-			className={ className(props) }
-			onClick={ props.faster } />
+			className={ className(disabled) }
+			onClick={ blocker(faster, disabled) } />
 	</span>
 ))

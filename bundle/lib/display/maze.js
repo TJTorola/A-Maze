@@ -26,10 +26,14 @@ export default class {
 		}
 	}
 
-	renderAll(grid) {
+	clear() {
+		this.display.clear();
+	}
+
+	renderAll({ grid }) {
 		let cell;
 
-		this.display.clear();
+		this.clear();
 		for (let x = 0; x < grid.length; x++) {
 			for (let y = 0; y < grid[x].length; y++) {
 				cell = grid[x][y];

@@ -1,7 +1,9 @@
 export default (state = false, action) => {
 	switch (action.type) {
-		case "GOING_SLOWEST":
-			return action.state;
+		case "SLOWEST":
+			return true;
+		case "FASTER":
+			return false;
 	}
 	return state;
 };
