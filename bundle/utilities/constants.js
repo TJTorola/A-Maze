@@ -58,3 +58,10 @@ export const ALGORITHMS = {
 		'BreadthFirstSolver'
 	]
 }
+
+export const BULLET_SETTINGS = {
+	color: '#d7191c',
+	lg: .5,
+	md: .3,
+	sm: .2
+}

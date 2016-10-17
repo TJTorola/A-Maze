@@ -30,38 +30,11 @@ class Spreader extends Tool {
 		return max;
 	}
 
-	unblockedDirs(pos) {
-		const cell = this.grid.grid[pos[0]][pos[1]];
-		const unblocked = [];
-
-		[ 'up', 'right', 'down', 'left' ].forEach(dir => {
-			if (!cell.walls.includes(dir)) { unblocked.push(dir); }
-		});
-
-		return unblocked;
-	}
-
-	possiblePos(pos) {
-		const { grid } = this.grid;
-		let newPos, delta;
-		let possible = [];
-		
-		this.unblockedDirs(pos).forEach(dir => {
-			delta = DIR_DATA[dir].delta;
-			newPos = [pos[0] + delta[0], pos[1] + delta[1]];
-
-			if (!this.visited[newPos]) {
-				possible.push(newPos);
-			}
-		});
-
-		return possible;
-	}
-
 	step(move = null) {
 		move = move || this.stack.shift();
-		const { pos, value } = move;
+		if (move == null) { return null; }
 
+		const { pos, value } = move;
 		this.visited[pos] = true;
 		this.setValue(value, pos);
 		if (this.gradiant) {

@@ -4,6 +4,7 @@ export default class {
 		this.steps = 0;
 
 		const { grid } = controller;
+		this.target = [grid.width - 1, grid.height - 2];
 		this.render = grid.render.bind(grid);
 	}
 
