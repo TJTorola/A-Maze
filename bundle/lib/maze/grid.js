@@ -46,6 +46,7 @@ export default class {
 			for (let y = 0; y < this.height; y++) {
 				this.clearStatus([x, y]);
 				this.setValue(null, [x, y]);
+				this.setBullet(0, [x, y]);
 			}
 		}
 	}

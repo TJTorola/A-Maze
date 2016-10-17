@@ -19,11 +19,12 @@ export default class {
 	}
 
 	render({ grid }) {
-		if (this.diffs.length === 0) {
-			this.renderAll(grid);
-		} else {
-			this.renderDiff(grid);
-		}
+		this.renderDiff(grid);
+		// if (this.diffs.length === 0) {
+		// 	this.renderAll(grid);
+		// } else {
+		// 	this.renderDiff(grid);
+		// }
 	}
 
 	clear() {
