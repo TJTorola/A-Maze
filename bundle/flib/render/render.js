@@ -1,30 +1,43 @@
-import { renderCell } from './cell';
+import renderCell from './cell';
 
-const findCell = graph => pos => {
+const buildCell = size => graph => pos => {
 	const [x, y] = pos;
-	return graph[x][y];
-}
-
-const renderDiff = (graph, diff) => {
-	const cell = findCell(graph);
-	diff.forEach(pos => {
-		const cell = cell(pos);
-		renderCell(cell);
-	});
-}
-
-const renderAll = graph => {
-	graph.forEach((row, y) => {
-		row.forEach((cell, x) => {
-			renderCell(cell);
-		});
+	return {
+		center : [],
+		size   : size,
+		data   : graph[x][y]
 	}
 }
 
-export default (graph, diff) => {
-	if (diff) {
-		renderDiff(graph, diff);
-	} else {
-		renderAll(graph);
+export default (context, cellSize) => {
+	const renderCell = renderCell(context);
+	const buildCell  = buildCell(cellSize);
+
+	const renderDiff = (graph, diff) => {
+		const buildCell = buildCell(graph);
+
+		diff.forEach(pos => {
+			const cell = buildCell(pos);
+			renderCell(cell);
+		});
+	}
+
+	const renderAll = graph => {
+		const buildCell = buildCell(graph);
+
+		graph.forEach((row, y) => {
+			row.forEach((_, x) => {
+				const cell = buildCell([x, y]);
+				renderCell(cell);
+			});
+		}
+	}
+
+	return (graph, diff) => {
+		if (diff) {
+			renderDiff(graph, diff);
+		} else {
+			renderAll(graph);
+		}
 	}
 }

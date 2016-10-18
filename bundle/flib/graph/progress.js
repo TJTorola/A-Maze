@@ -1,8 +1,12 @@
 const progressGraph = (graph, pos, callback) => {
-	const [x, y] = pos;
+	if (pos) {
+		const [x, y] = pos;
+	} else {
+		const [x, y] = [null, null];
+	}
 
 	return graph.map((row, idx) => {
-		if (idx === y) {
+		if (y === null || idx === y) {
 			return progressRow(row, x, callback);
 		} else {
 			return row;
@@ -11,7 +15,7 @@ const progressGraph = (graph, pos, callback) => {
 }
 
 const progressRow = (row, x, callback) => row.map((cell, idx) => {
-	if (idx === x) {
+	if (x === null || idx === x) {
 		return callback(cell);
 	} else {
 		return cell;
@@ -101,6 +105,17 @@ export const removePath = (graph, pos, removed) => {
 		walls  : old.walls,
 		paths  : old.paths.filter(path => path != removed),
 		value  : old.value
+	});
+
+	return progressGraph(graph, pos, newCell);
+}
+
+export const cleanCell = (graph, pos) => {
+	const newCell = old => ({
+		status : [],
+		walls  : old.walls,
+		paths  : [],
+		value  : null
 	});
 
 	return progressGraph(graph, pos, newCell);
