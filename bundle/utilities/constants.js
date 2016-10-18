@@ -67,8 +67,8 @@ export const BULLET_SETTINGS = {
 }
 
 export const DEFAULT_CELL = {
-	status : [ 'unvisited' ],
-	walls  : [ 'up', 'right', 'down', 'left' ],
-	paths  : [],
-	value  : null
+	color : [ COLORS['unvisited'] ],
+	walls : [ 'up', 'right', 'down', 'left' ],
+	paths : [],
+	value : null
 }

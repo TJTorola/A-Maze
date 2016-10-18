@@ -22,34 +22,34 @@ const progressRow = (row, x, callback) => row.map((cell, idx) => {
 	}
 }
 
-export const addStatus = (graph, pos, status) => {
+export const addColor = (graph, pos, color) => {
 	const newCell = old => ({
-		status : old.status.concat([status]),
-		walls  : old.walls,
-		paths  : old.paths,
-		value  : old.value
+		color : old.color.concat([color]),
+		walls : old.walls,
+		paths : old.paths,
+		value : old.value
 	});
 
 	return progressGraph(graph, pos, newCell);
 }
 
-export const removeStatus = (graph, pos, removed) => {
+export const removeColor = (graph, pos, removed) => {
 	const newCell = old => ({
-		status : old.status.filter(status => status != removed),
-		walls  : old.walls,
-		paths  : old.paths,
-		value  : old.value
+		color : old.color.filter(color => color != removed),
+		walls : old.walls,
+		paths : old.paths,
+		value : old.value
 	});
 
 	return progressGraph(graph, pos, newCell);
 }
 
-export const clearStatus = (graph, pos) => {
+export const clearColor = (graph, pos) => {
 	const newCell = old => ({
-		status : [],
-		walls  : old.walls,
-		paths  : old.paths,
-		value  : old.value
+		color : [],
+		walls : old.walls,
+		paths : old.paths,
+		value : old.value
 	});
 
 	return progressGraph(graph, pos, newCell);
@@ -57,10 +57,10 @@ export const clearStatus = (graph, pos) => {
 
 export const setValue = (graph, pos, value) => {
 	const newCell = old => ({
-		status : old.status,
-		walls  : old.walls,
-		paths  : old.paths,
-		value  : value
+		color : old.color,
+		walls : old.walls,
+		paths : old.paths,
+		value : value
 	});
 
 	return progressGraph(graph, pos, newCell);
@@ -68,10 +68,10 @@ export const setValue = (graph, pos, value) => {
 
 export const addWall = (graph, pos, wall) => {
 	const newCell = old => ({
-		status : old.status,
-		walls  : old.walls.concat([wall]),
-		paths  : old.paths,
-		value  : old.value
+		color : old.color,
+		walls : old.walls.concat([wall]),
+		paths : old.paths,
+		value : old.value
 	});
 
 	return progressGraph(graph, pos, newCell);
@@ -79,10 +79,10 @@ export const addWall = (graph, pos, wall) => {
 
 export const removeWall = (graph, pos, removed) => {
 	const newCell = old => ({
-		status : old.status,
-		walls  : old.walls.filter(wall => wall != removed),
-		paths  : old.paths,
-		value  : old.value
+		color : old.color,
+		walls : old.walls.filter(wall => wall != removed),
+		paths : old.paths,
+		value : old.value
 	});
 
 	return progressGraph(graph, pos, newCell);
@@ -90,10 +90,10 @@ export const removeWall = (graph, pos, removed) => {
 
 export const addPath = (graph, pos, path) => {
 	const newCell = old => ({
-		status : old.status,
-		walls  : old.walls,
-		paths  : old.paths.concat([path]),
-		value  : old.value
+		color : old.color,
+		walls : old.walls,
+		paths : old.paths.concat([path]),
+		value : old.value
 	});
 
 	return progressGraph(graph, pos, newCell);
@@ -101,10 +101,10 @@ export const addPath = (graph, pos, path) => {
 
 export const removePath = (graph, pos, removed) => {
 	const newCell = old => ({
-		status : old.status,
-		walls  : old.walls,
-		paths  : old.paths.filter(path => path != removed),
-		value  : old.value
+		color : old.color,
+		walls : old.walls,
+		paths : old.paths.filter(path => path != removed),
+		value : old.value
 	});
 
 	return progressGraph(graph, pos, newCell);
@@ -112,10 +112,10 @@ export const removePath = (graph, pos, removed) => {
 
 export const cleanCell = (graph, pos) => {
 	const newCell = old => ({
-		status : [],
-		walls  : old.walls,
-		paths  : [],
-		value  : null
+		color : [],
+		walls : old.walls,
+		paths : [],
+		value : null
 	});
 
 	return progressGraph(graph, pos, newCell);
