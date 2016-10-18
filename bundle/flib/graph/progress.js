@@ -1,3 +1,5 @@
+import { COLORS } from 'utilities/settings';
+
 const progressGraph = (graph, pos, callback) => {
 	if (pos) {
 		const [x, y] = pos;
@@ -22,9 +24,9 @@ const progressRow = (row, x, callback) => row.map((cell, idx) => {
 	}
 }
 
-export const addColor = (graph, pos, color) => {
+export const setColor = (graph, pos, color) => {
 	const newCell = old => ({
-		color : old.color.concat([color]),
+		color : color,
 		walls : old.walls,
 		paths : old.paths,
 		value : old.value
@@ -35,18 +37,7 @@ export const addColor = (graph, pos, color) => {
 
 export const removeColor = (graph, pos, removed) => {
 	const newCell = old => ({
-		color : old.color.filter(color => color != removed),
-		walls : old.walls,
-		paths : old.paths,
-		value : old.value
-	});
-
-	return progressGraph(graph, pos, newCell);
-}
-
-export const clearColor = (graph, pos) => {
-	const newCell = old => ({
-		color : [],
+		color : 'white',
 		walls : old.walls,
 		paths : old.paths,
 		value : old.value
@@ -112,7 +103,7 @@ export const removePath = (graph, pos, removed) => {
 
 export const cleanCell = (graph, pos) => {
 	const newCell = old => ({
-		color : [],
+		color : 'white',
 		walls : old.walls,
 		paths : [],
 		value : null

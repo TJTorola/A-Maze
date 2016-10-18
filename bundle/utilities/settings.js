@@ -17,12 +17,6 @@ export const DIR_DATA = {
 	}
 }
 
-export const COLORS = {
-	'unvisited' : '#000',
-	'exploring' : '#AAA',
-	'spread'    : '#53ff9a'
-}
-
 export const DEFAULT_GRADIANT = {
 	0   : '#ffffd9',
 	12  : '#edf8b1',
@@ -57,18 +51,4 @@ export const ALGORITHMS = {
 	solvers: [
 		'BreadthFirstSolver'
 	]
-}
-
-export const BULLET_SETTINGS = {
-	color: '#d7191c',
-	lg: .5,
-	md: .3,
-	sm: .2
-}
-
-export const DEFAULT_CELL = {
-	color : [ COLORS['unvisited'] ],
-	walls : [ 'up', 'right', 'down', 'left' ],
-	paths : [],
-	value : null
 }
