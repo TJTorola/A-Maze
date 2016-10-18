@@ -44,6 +44,7 @@ export default context => {
 	}
 
 	return cell => {
+		const { size } = cell;
 		const { walls, lines, color } = cell.data;
 
 		const returnPoint = returnPoint(cell);
@@ -51,7 +52,7 @@ export default context => {
 			return linePoints[key].map(returnPoint);
 		});
 
-		fill(cell.color);
+		fill(color, returnPoint['topLeft'], size);
 
 		walls.forEach(dir => {
 			drawLine(...linePoints[dir + "Wall"]);
