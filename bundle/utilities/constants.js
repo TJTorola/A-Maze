@@ -65,3 +65,10 @@ export const BULLET_SETTINGS = {
 	md: .3,
 	sm: .2
 }
+
+export const DEFAULT_CELL = {
+	status : [ 'unvisited' ],
+	walls  : [ 'up', 'right', 'down', 'left' ],
+	paths  : [],
+	value  : null
+}

@@ -19,31 +19,6 @@ export default class {
 	}
 
 	render({ grid }) {
-		this.renderDiff(grid);
-		// if (this.diffs.length === 0) {
-		// 	this.renderAll(grid);
-		// } else {
-		// 	this.renderDiff(grid);
-		// }
-	}
-
-	clear() {
-		this.display.clear();
-	}
-
-	renderAll({ grid }) {
-		let cell;
-
-		this.clear();
-		for (let x = 0; x < grid.length; x++) {
-			for (let y = 0; y < grid[x].length; y++) {
-				cell = grid[x][y];
-				this.renderCell(cell, [x, y]);
-			}
-		}
-	}
-
-	renderDiff(grid) {
 		let cell;
 
 		this.diffs.forEach(diff => {
@@ -52,6 +27,10 @@ export default class {
 		});
 
 		this.diffs = [];
+	}
+
+	clear() {
+		this.display.clear();
 	}
 
 	renderCell(cell, pos) {
