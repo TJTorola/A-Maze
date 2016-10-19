@@ -16,6 +16,7 @@ export default graph => (pos, dir) => {
 
 	return {
 		pos: nextPos,
-		graph: newGraph
+		graph: newGraph,
+		dir
 	}
 }

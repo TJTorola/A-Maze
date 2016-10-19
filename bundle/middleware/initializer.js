@@ -2,6 +2,9 @@ import { DEFAULT_SIZE } from 'utilities/settings';
 import render from 'lib/render/render';
 import newGraph from 'lib/graph/new';
 
+import _inspector from 'lib/workers/tools/inspector';
+import _builder from 'lib/workers/tools/builder';
+
 const setCanvas = size => {
 	const canvas = document.querySelector('.Canvas');
 
@@ -38,7 +41,31 @@ const returnGraph = () => {
 	const x = context.canvas.width / DEFAULT_SIZE;
 	const y = context.canvas.height / DEFAULT_SIZE;
 
-	return newGraph(x, y);
+	return outlineGraph(newGraph(x, y));
+}
+
+const outlineGraph = graph => {
+	const w = graph.length,
+	      h = graph[0].length;
+
+	const _outline = ({ graph, pos, dir }) => {
+		const builder = _builder(graph);
+		const neighbors = _inspector(graph)(pos);
+
+		if (dir === 'up' && !neighbors.up) {
+			return _outline(builder(pos, 'left'));
+		} else if (dir === 'left' && !neighbors.left) {
+			return _outline(builder([0, 2], 'down'));
+		} else if (dir === 'down' && !neighbors.down) {
+			return _outline(builder(pos, 'right'));
+		} else if (dir === 'right' && !neighbors.right) {
+			return graph;
+		}
+
+		return _outline(builder(pos, dir));
+	}
+
+	return _outline(_builder(graph)([w - 1, h - 3], 'up'));
 }
 
 const initialize = ({ dispatch }) => {

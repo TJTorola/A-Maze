@@ -4,16 +4,16 @@ const progressGraph = (graph, pos, callback) => {
 	const [x, y] = pos || [null, null];
 
 	return graph.map((row, idx) => {
-		if (y === null || idx === y) {
-			return progressRow(row, x, callback);
+		if (x === null || idx === x) {
+			return progressRow(row, y, callback);
 		} else {
 			return row;
 		}
 	});
 }
 
-const progressRow = (row, x, callback) => row.map((cell, idx) => {
-	if (x === null || idx === x) {
+const progressRow = (row, y, callback) => row.map((cell, idx) => {
+	if (y === null || idx === y) {
 		return callback(cell);
 	} else {
 		return cell;
