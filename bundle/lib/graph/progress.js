@@ -1,11 +1,7 @@
 import { COLORS } from 'utilities/settings';
 
 const progressGraph = (graph, pos, callback) => {
-	if (pos) {
-		const [x, y] = pos;
-	} else {
-		const [x, y] = [null, null];
-	}
+	const [x, y] = pos || [null, null];
 
 	return graph.map((row, idx) => {
 		if (y === null || idx === y) {
@@ -22,7 +18,7 @@ const progressRow = (row, x, callback) => row.map((cell, idx) => {
 	} else {
 		return cell;
 	}
-}
+})
 
 export const setColor = (graph, pos, color) => {
 	const newCell = old => ({

@@ -1,6 +1,6 @@
 const cell = () => ({
 	color : 'black',
-	walls : [ 'top', 'right', 'bottom', 'left' ],
+	walls : [ 'up', 'right', 'down', 'left' ],
 	paths : [],
 	value : null
 });

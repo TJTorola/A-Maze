@@ -21,14 +21,14 @@ const returnPoint = cell => {
 
 export default context => {
 	const lineNames = {
-		topWall    : [ 'topLeft', 'topRight' ],
-		rightWall  : [ 'topRight', 'bottomRight' ],
-		bottomWall : [ 'bottomRight', 'bottomLeft' ],
-		leftWall   : [ 'bottomLeft', 'topLeft' ],
-		upPath     : [ 'center', 'top' ],
-		rightPath  : [ 'center', 'right' ],
-		downPath   : [ 'center', 'bottom' ],
-		leftPath   : [ 'center', 'left' ]
+		upWall    : [ 'topLeft', 'topRight' ],
+		rightWall : [ 'topRight', 'bottomRight' ],
+		downWall  : [ 'bottomRight', 'bottomLeft' ],
+		leftWall  : [ 'bottomLeft', 'topLeft' ],
+		upPath    : [ 'center', 'top' ],
+		rightPath : [ 'center', 'right' ],
+		downPath  : [ 'center', 'bottom' ],
+		leftPath  : [ 'center', 'left' ]
 	}
 
 	const drawLine = (to, from) => {
