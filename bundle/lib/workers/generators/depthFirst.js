@@ -1,11 +1,20 @@
 import { setColor } from 'lib/graph/progress';
-import _inspector from 'lib/workers/tools';
+import _inspector from 'lib/workers/tools/inspector';
+import _builder from 'lib/workers/tools/builder';
 
+const step = (_graph, _stack) => () => {
+	const builder = _builder(_graph, 'gray');
+	const [_pos, ...remainder] = _stack;
+	const neighbors = _inspector(graph)(_pos);
 
-const step = (graph, stack) => ({
-	graph,
-	step: step(graph, stack)
-})
+	const [ 'up', 'down', 'left', 'right' ].select(dir => neighbors[dir]);
+	const { graph, pos } = builder(_pos, 'right');
+
+	return {
+		graph,
+		step  : step(graph, [pos])
+	}
+}
 
 export default (graph, start = [0, 1]) => {
 	const newGraph = setColor(graph, start, 'gray');
