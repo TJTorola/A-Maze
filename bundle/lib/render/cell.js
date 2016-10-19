@@ -20,15 +20,15 @@ const returnPoint = cell => {
 }
 
 export default context => {
-	const linePoints = {
+	const lineNames = {
 		topWall    : [ 'topLeft', 'topRight' ],
 		rightWall  : [ 'topRight', 'bottomRight' ],
 		bottomWall : [ 'bottomRight', 'bottomLeft' ],
 		leftWall   : [ 'bottomLeft', 'topLeft' ],
-		upLine     : [ 'center', 'top' ],
-		rightLine  : [ 'center', 'right' ],
-		downLine   : [ 'center', 'bottom' ],
-		leftLine   : [ 'center', 'left' ]
+		upPath     : [ 'center', 'top' ],
+		rightPath  : [ 'center', 'right' ],
+		downPath   : [ 'center', 'bottom' ],
+		leftPath   : [ 'center', 'left' ]
 	}
 
 	const drawLine = (to, from) => {
@@ -45,21 +45,19 @@ export default context => {
 
 	return cell => {
 		const { size } = cell;
-		const { walls, lines, color } = cell.data;
+		const { walls, paths, color } = cell.data;
+		const points = returnPoint(cell);
 
-		const returnPoint = returnPoint(cell);
-		const linePoints = Object.keys(linePoints).map(key => {
-			return linePoints[key].map(returnPoint);
-		});
-
-		fill(color, returnPoint['topLeft'], size);
+		fill(color, points('topLeft'), size);
 
 		walls.forEach(dir => {
-			drawLine(...linePoints[dir + "Wall"]);
+			const line = lineNames[dir + "Wall"].map(points);
+			drawLine(...line);
 		});
 
-		lines.forEach(dir => {
-			drawLine(...linePoints[dir + "Line"]);
+		paths.forEach(dir => {
+			const line = lineNames[dir + "Path"].map(points);
+			drawLine(...line);
 		});
 	}
 }

@@ -19,25 +19,24 @@ const getContext = () => {
 	const canvas = document.querySelector('.Canvas');
 	const context = canvas.getContext('2d');
 
-	// For HDP displays
-	const scale = window.devicePixelRatio;
-	context.scale(scale, scale);
-
 	return context;
 }
 
 const returnRender = () => {
 	setCanvas(DEFAULT_SIZE);
 	const context = getContext();
-	const hdpSize = DEFAULT_SIZE / window.devicePixelRatio;
+
+	const scale = window.devicePixelRatio;
+	context.scale(scale, scale);
+	const hdpSize = DEFAULT_SIZE / scale;
 
 	return render(context, hdpSize);
 }
 
 const returnGraph = () => {
 	const context = getContext();
-	const x = context.width / DEFAULT_SIZE;
-	const y = context.height / DEFAULT_SIZE;
+	const x = context.canvas.width / DEFAULT_SIZE;
+	const y = context.canvas.height / DEFAULT_SIZE;
 
 	return newGraph(x, y);
 }

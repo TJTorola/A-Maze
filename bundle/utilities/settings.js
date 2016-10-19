@@ -1,4 +1,4 @@
-export const DEFAULT_SIZE = 60;
+export const DEFAULT_SIZE = 30;
 
 export const DIR_DATA = {
 	up: {

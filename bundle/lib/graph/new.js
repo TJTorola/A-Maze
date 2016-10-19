@@ -1,10 +1,10 @@
 const cell = () => ({
 	color : 'white',
-	walls : [ 'up', 'right', 'down', 'left' ],
+	walls : [ 'top', 'right', 'bottom', 'left' ],
 	paths : [],
 	value : null
 });
 
-const row = x => () => new Array(x).fill(null).map(cell);
+const row = y => () => new Array(y).fill(null).map(cell);
 
-export default (x, y) => new Array(y).fill(null).map(row(x));
+export default (x, y) => new Array(x).fill(null).map(row(y));

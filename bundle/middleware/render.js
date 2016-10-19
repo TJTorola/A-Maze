@@ -5,6 +5,7 @@ const render = ({ dispatch, getState }) => {
 		render(graph);
 	} else {
 		dispatch({ type: "INITIALIZE" });
+		dispatch({ type: "RENDER" });
 	}
 }
 

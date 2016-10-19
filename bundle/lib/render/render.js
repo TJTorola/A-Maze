@@ -1,34 +1,34 @@
 import renderCell from './cell';
 
-const buildCell = size => graph => pos => {
-	const [x, y] = pos;
+const buildCell = size => (graph, pos) => {
+	const [gx, gy] = pos;
+	const half = size / 2;
+	const x = (gx * size) + half;
+	const y = (gy * size) + half;
+
 	return {
-		center : [],
+		center : [x, y],
 		size   : size,
-		data   : graph[x][y]
+		data   : graph[gx][gy]
 	}
 }
 
 export default (context, cellSize) => {
-	const renderCell = renderCell(context);
-	const buildCell  = buildCell(cellSize);
+	const renderer = renderCell(context);
+	const builder = buildCell(cellSize);
 
 	const renderDiff = (graph, diff) => {
-		const buildCell = buildCell(graph);
-
 		diff.forEach(pos => {
-			const cell = buildCell(pos);
-			renderCell(cell);
+			const cell = builder(graph, pos);
+			renderer(cell);
 		});
 	}
 
 	const renderAll = graph => {
-		const buildCell = buildCell(graph);
-
-		graph.forEach((row, y) => {
-			row.forEach((_, x) => {
-				const cell = buildCell([x, y]);
-				renderCell(cell);
+		graph.forEach((row, x) => {
+			row.forEach((_, y) => {
+				const cell = builder(graph, [x, y]);
+				renderer(cell);
 			});
 		});
 	}
