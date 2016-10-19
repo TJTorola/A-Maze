@@ -1,5 +1,6 @@
+import { DEFAULT_SIZE } from 'utilities/settings';
 import { setCanvas } from 'utilities/helper';
-import Controller from 'lib/controller';
+import render from 'flib/render/render';
 
 const finished = (dispatch, generated) => () => {
 	const type = generated ? "SOLVED" : "GENERATED";
@@ -23,10 +24,14 @@ const getWorker = ({ dispatch, getState }) => {
 	}
 }
 
-const getController = ({ dispatch }) => {
+const getRender = ({ dispatch }) => {
 	setCanvas();
-	const controller = new Controller();
-	dispatch({ type: "SET_CONTROLLER", controller });
+
+	const context = getContext();
+	const size = DEFAULT_SIZE / window.devicePixelRatio;
+	const render = render(context, size);
+	
+	dispatch({ type: "SET_RENDER", render });
 }
 
 export default store => next => action => {
@@ -34,8 +39,8 @@ export default store => next => action => {
 		case "GET_WORKER":
 			getWorker(store);
 			break;
-		case "GET_CONTROLLER":
-			getController(store);
+		case "GET_RENDER":
+			getRender(store);
 			break;
 	}
 	return next(action);

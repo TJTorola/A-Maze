@@ -1,4 +1,4 @@
-import { ALGORITHMS } from 'utilities/constants';
+import { ALGORITHMS } from 'utilities/settings';
 
 export default (state = ALGORITHMS['generators'][0], action) => {
 	switch (action.type) {

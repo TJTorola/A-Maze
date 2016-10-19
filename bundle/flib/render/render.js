@@ -30,7 +30,7 @@ export default (context, cellSize) => {
 				const cell = buildCell([x, y]);
 				renderCell(cell);
 			});
-		}
+		});
 	}
 
 	return (graph, diff) => {

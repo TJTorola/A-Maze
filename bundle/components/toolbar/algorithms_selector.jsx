@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { ALGORITHMS } from 'utilities/constants';
+import { ALGORITHMS } from 'utilities/settings';
 
 const mapStateToProps = state => ({
 	generated: state.phase.generated

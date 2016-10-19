@@ -1,4 +1,4 @@
-import { SPEEDS } from 'utilities/constants';
+import { SPEEDS } from 'utilities/settings';
 
 const faster = ({ dispatch, getState }) => {
 	const { speed, goingFastest } = getState();
