@@ -1,3 +1,11 @@
 import { applyMiddleware } from 'redux';
 
-export default applyMiddleware();
+import initializer from 'middleware/initializer';
+import playPause from 'middleware/playPause';
+import render from 'middleware/render';
+
+export default applyMiddleware(
+	initializer,
+	playPause,
+	render
+);

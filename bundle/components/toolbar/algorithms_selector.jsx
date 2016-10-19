@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 
 import { ALGORITHMS } from 'utilities/settings';
 
-const mapStateToProps = state => ({
-	generated: state.phase.generated
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
 	setAlgorithm: algorithm => dispatch({ type: "SET_ALGORITHM", algorithm })
@@ -27,6 +25,6 @@ export default connect(
 	mapDispatchToProps
 )(props => (
 	<select>
-		{ algorithms(props) }
+		
 	</select>
 ))

@@ -1,5 +1,5 @@
 const cell = () => ({
-	color : 'black',
+	color : 'white',
 	walls : [ 'up', 'right', 'down', 'left' ],
 	paths : [],
 	value : null

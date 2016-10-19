@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 
 import Icon from 'utilities/icon';
 
-const mapStateToProps = state => ({
-	phase: state.phase
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
 	stepForward: () => dispatch({ type: "STEP_FORWARD" })
@@ -24,8 +22,6 @@ export default connect(
 	mapDispatchToProps
 )(props => (
 	<span>
-		<Icon i="step_forward"
-			className={ className(props.phase) }
-			onClick={ props.stepForward } />
+		<Icon i="step_forward" />
 	</span>
 ))

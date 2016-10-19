@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 
 import Icon from 'utilities/icon';
 
-const mapStateToProps = state => ({
-	goingSlowest : state.goingSlowest,
-	solved       : state.phase.solved
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
 	slower  : () => dispatch({ type: "SLOWER" })
@@ -26,8 +23,6 @@ export default connect(
 	mapDispatchToProps
 )(props => (
 	<span>
-		<Icon i="fast_backward"
-			className={ className(props) }
-			onClick={ props.slower } />
+		<Icon i="fast_backward" />
 	</span>
 ))

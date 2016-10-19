@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import Icon from 'utilities/icon';
 
 const mapStateToProps = state => ({
-	playing : state.playing,
-	phase   : state.phase
+	playing : state.playback.playing
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -35,7 +34,6 @@ export default connect(
 )(props => (
 	<span>
 		<Icon i={ props.playing ? 'pause' : 'play' } 
-			className={ className(props.phase) }
 			onClick={ playPause(props) } />
 	</span>
 ))
