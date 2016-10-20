@@ -9,6 +9,8 @@ import generation from 'reducers/generation';
 import resolution from 'reducers/resolution';
 
 import playbackPlaying from 'reducers/playback/playing';
+import playbackInterval from 'reducers/playback/interval';
+import playbackMilliseconds from 'reducers/playback/milliseconds';
 
 export default combineReducers({
 	step,
@@ -19,6 +21,8 @@ export default combineReducers({
 	generation,
 	resolution,
 	playback: combineReducers({
-		playing: playbackPlaying
+		playing      : playbackPlaying,
+		interval     : playbackInterval,
+		milliseconds : playbackMilliseconds
 	})
 });

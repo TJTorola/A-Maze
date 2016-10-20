@@ -17,6 +17,7 @@ export default (graph, color = 'white') => (pos, dir) => {
 	return {
 		pos: nextPos,
 		graph: newGraph,
+		diff: new Set([pos, nextPos]),
 		dir
 	}
 }

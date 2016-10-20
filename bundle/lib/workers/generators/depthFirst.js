@@ -13,9 +13,10 @@ const step = (graph, stack) => () => {
 
 	const forward = () => {
 		const idx = Math.floor(Math.random() * moves.length);
-		const { graph, pos } = builder(stack[0], moves[idx]);
+		const { graph, pos, diff } = builder(stack[0], moves[idx]);
 		return {
 			graph,
+			diff,
 			step  : step(graph, [pos, ...stack])
 		}
 	}
@@ -26,11 +27,13 @@ const step = (graph, stack) => () => {
 		if (remainder.length > 0) {
 			return {
 				graph : newGraph,
+				diff  : new Set([pos]),
 				step  : step(newGraph, remainder)
 			}
 		} else {
 			return {
 				graph : newGraph,
+				diff  : new Set([pos]),
 				step  : null
 			}
 		}
@@ -48,6 +51,7 @@ export default (graph, start = [0, 1]) => {
 
 	return {
 		graph : newGraph,
+		diff  : new Set([start]),
 		step  : step(newGraph, [start])
 	};
 }
