@@ -1,5 +1,7 @@
 export const DEFAULT_SIZE = 20;
 
+export const DIRS = [ 'up', 'down', 'left', 'right' ];
+
 export const DIR_DATA = {
 	up: {
 		back: 'down',

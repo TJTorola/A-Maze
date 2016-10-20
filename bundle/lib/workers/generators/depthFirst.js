@@ -1,3 +1,4 @@
+import { DIRS } from 'utilities/settings';
 import { setColor } from 'lib/graph/progress';
 import _inspector from 'lib/workers/tools/inspector';
 import _builder from 'lib/workers/tools/builder';
@@ -7,7 +8,7 @@ const step = (_graph, _stack) => () => {
 	const [_pos, ...remainder] = _stack;
 	const neighbors = _inspector(graph)(_pos);
 
-	const [ 'up', 'down', 'left', 'right' ].select(dir => neighbors[dir]);
+	const possibleDirs = DIRS.select(dir => neighbors[dir]);
 	const { graph, pos } = builder(_pos, 'right');
 
 	return {
