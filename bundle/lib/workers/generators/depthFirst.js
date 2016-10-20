@@ -1,19 +1,45 @@
 import { DIRS } from 'utilities/settings';
 import { setColor } from 'lib/graph/progress';
-import _inspector from 'lib/workers/tools/inspector';
+import inspector from 'lib/workers/tools/inspector';
 import _builder from 'lib/workers/tools/builder';
 
-const step = (_graph, _stack) => () => {
-	const builder = _builder(_graph, 'gray');
-	const [_pos, ...remainder] = _stack;
-	const neighbors = _inspector(graph)(_pos);
+const step = (graph, stack) => () => {
+	const builder   = _builder(graph, 'gray'),
+	      neighbors = inspector(graph)(stack[0]);
 
-	const possibleDirs = DIRS.select(dir => neighbors[dir]);
-	const { graph, pos } = builder(_pos, 'right');
+	const moves     = DIRS.filter(
+		(dir) => neighbors[dir] && neighbors[dir].color === "black"
+	);
 
-	return {
-		graph,
-		step  : step(graph, [pos])
+	const forward = () => {
+		const idx = Math.floor(Math.random() * moves.length);
+		const { graph, pos } = builder(stack[0], moves[idx]);
+		return {
+			graph,
+			step  : step(graph, [pos, ...stack])
+		}
+	}
+
+	const back = () => {
+		const [pos, ...remainder] = stack;
+		const newGraph = setColor(graph, pos, 'white');
+		if (remainder.length > 0) {
+			return {
+				graph : newGraph,
+				step  : step(newGraph, remainder)
+			}
+		} else {
+			return {
+				graph : newGraph,
+				step  : null
+			}
+		}
+	}
+
+	if (moves.length === 0) {
+		return back();
+	} else {
+		return forward();
 	}
 }
 
