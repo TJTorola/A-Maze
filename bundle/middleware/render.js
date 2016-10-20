@@ -1,12 +1,7 @@
 const render = ({ dispatch, getState }) => {
-	const { render, graph } = getState();
-
-	if (render) {
-		render(graph);
-	} else {
-		dispatch({ type: "INITIALIZE" });
-		dispatch({ type: "RENDER" });
-	}
+	const { render, step, generation } = getState();
+	const graph = generation[step];
+	render(graph);
 }
 
 export default store => next => action => {
