@@ -6,7 +6,7 @@ import Icon from 'utilities/icon';
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-	stepBackward: () => dispatch({ type: "STEP_BACKWARD" })
+	jumpBackward: () => dispatch({ type: "JUMP_BACKWARD" })
 });
 
 const className = phase => {

@@ -5,7 +5,7 @@ import Controls from './controls';
 
 export default () => (
 	<header>
-		<Slider />
 		<Controls />
+		<Slider />
 	</header>
 );

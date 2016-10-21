@@ -8,8 +8,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	play  : () => dispatch({ type: "PLAY" }),
-	pause : () => dispatch({ type: "PAUSE" })
+	play : () => dispatch({ type: "PLAY" }),
+	stop : () => dispatch({ type: "STOP" })
 });
 
 const className = phase => {
@@ -22,7 +22,7 @@ const className = phase => {
 
 const playPause = props => () => {
 	if (props.playing) {
-		props.pause();
+		props.stop();
 	} else {
 		props.play();
 	}

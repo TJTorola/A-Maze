@@ -23,6 +23,7 @@ const play = ({ dispatch, getState }) => {
 
 	const newInterval = setInterval(step(dispatch, getState, maxStep), milliseconds);
 	dispatch({ type: "SET_INTERVAL", interval: newInterval });
+	dispatch({ type: "PLAYING" });
 }
 
 const stop = ({ dispatch, getState }) => {
