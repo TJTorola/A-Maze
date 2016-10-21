@@ -8,8 +8,6 @@ export default (state = null, action) => {
 			return action.step;
 		case "CLEAR_STEP":
 			return null;
-		case "FIRST_STEP":
-			return 0;
 	}
 	return state;
 };

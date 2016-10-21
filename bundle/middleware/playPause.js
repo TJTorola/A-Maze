@@ -1,21 +1,26 @@
 import depthFirstGenerator from 'lib/workers/generators/depthFirst';
 
+const step = (dispatch, getState, maxStep) => () => {
+	const step = getState().step || 0;
+	if (0 <= step && step < maxStep) {
+		dispatch({ type: "NEXT_STEP" });
+	} else {
+		dispatch({ type: "STOP" });
+	}
+}
+
 const play = ({ dispatch, getState }) => {
 	dispatch({ type: "GENERATE" });
 	dispatch({ type: "CLEAR_STEP" });
 
 	const { playback, generation } = getState(),
+	      { interval, milliseconds } = playback,
 	      maxStep = generation.length - 1;
 
-	const interval = setInterval(() => {
-		if (getState().step < maxStep) {
-			dispatch({ type: "NEXT_STEP" });
-			dispatch({ type: "RENDER" });
-		} else {
-			dispatch({ type: "STOP" });
-		}
-	}, playback.milliseconds);
-	dispatch({ type: "SET_INTERVAL", interval });
+	if (interval !== null) { clearInterval(interval); }
+
+	const newInterval = setInterval(step(dispatch, getState, maxStep), milliseconds);
+	dispatch({ type: "SET_INTERVAL", interval: newInterval });
 }
 
 const stop = ({ dispatch, getState }) => {
@@ -32,9 +37,6 @@ export default store => next => action => {
 			play(store);
 			break;
 		case "STOP":
-			stop(store);
-			break;
-		case "SET_STEP":
 			stop(store);
 			break;
 	}
