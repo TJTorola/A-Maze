@@ -19,7 +19,7 @@ const algorithms = props => {
 		</option>
 	));
 }
-8
+
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps

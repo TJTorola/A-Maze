@@ -10,8 +10,10 @@ const step = (dispatch, getState, maxStep) => () => {
 }
 
 const play = ({ dispatch, getState }) => {
-	dispatch({ type: "GENERATE" });
-	dispatch({ type: "CLEAR_STEP" });
+	if (!getState().generation) {
+		dispatch({ type: "GENERATE" });
+		dispatch({ type: "CLEAR_STEP" });
+	}
 
 	const { playback, generation } = getState(),
 	      { interval, milliseconds } = playback,

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Algorithms from './algorithms_selector';
+import Slider from './slider';
 import Controls from './controls';
 
 export default () => (
 	<header>
-		<Algorithms />
+		<Slider />
 		<Controls />
 	</header>
 );
