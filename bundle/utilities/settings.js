@@ -1,4 +1,4 @@
-export const DEFAULT_SIZE = 15;
+export const DEFAULT_SIZE = 35;
 
 export const DIRS = [ 'up', 'down', 'left', 'right' ];
 
