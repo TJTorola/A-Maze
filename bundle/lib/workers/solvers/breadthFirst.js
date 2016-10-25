@@ -52,8 +52,8 @@ export default (graph, start = [0, 1]) => {
 
 	const step = (graph, stack, pos) => () => {
 		const spreadRet = spread(graph, stack),
-		      traceRet  = trace(spreadRet.graph, pos)
-		      finished  = spreadRet.stack.length === 0 && traceRet.pos === null
+		      traceRet  = trace(spreadRet.graph, pos),
+		      finished  = spreadRet.stack.length === 0 && traceRet.pos === null,
 		      nextStep  = step(traceRet.graph, spreadRet.stack, traceRet.pos);
 
 		return {
@@ -62,5 +62,5 @@ export default (graph, start = [0, 1]) => {
 			step  : finished ? null : nextStep
 		};
 	}
-	return step(graph, [{ pos: start, value: 0 }])();
+	return step(graph, [{ pos: start, value: 0 }], null)();
 }
