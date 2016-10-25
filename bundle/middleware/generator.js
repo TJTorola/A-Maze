@@ -38,8 +38,6 @@ const outlineGraph = graph => {
 }
 
 const generate = ({ getState, dispatch }) => {
-	dispatch({ type: "INITIALIZE" });
-
 	const { resolution } = getState();
 	const generation = runner(dfGenerator, returnGraph(resolution));
 	dispatch({ type: "SET_GENERATION", generation });

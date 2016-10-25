@@ -6,25 +6,23 @@ const lastStep = ({ dispatch, getState }) => {
 const stopAndRender = ({ dispatch, getState }, step) => {
 	dispatch({ type: "STOP" });
 
-	const { render, generation } = getState(),
-	      { graph } = generation[step];
-
-	render(graph);
+	const { graph } = getState().generation[step];
+	dispatch({ type: "RENDER", graph })
 }
 
 const renderNext = ({ dispatch, getState }) => {
-	const { render, generation, step } = getState(),
+	const { generation, step } = getState(),
 	      { graph, diff } = generation[step + 1];
 
-	render(graph, diff);
+	dispatch({ type: "RENDER", graph, diff });
 }
 
 const renderPrev = ({ dispatch, getState }) => {
-	const { render, generation, step } = getState(),
+	const { generation, step } = getState(),
 	      { diff } = generation[step],
 	      { graph } = generation[step - 1];
 
-	render(graph, diff);
+	dispatch({ type: "RENDER", graph, diff });
 }
 
 export default store => next => action => {
