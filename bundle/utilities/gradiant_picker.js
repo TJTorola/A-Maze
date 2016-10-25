@@ -1,4 +1,4 @@
-import { DEFAULT_GRADIANT } from './constants';
+import { DEFAULT_GRADIANT } from './settings';
 
 const toPercent = (value, max) => {
 	if (value >= max) { return 100; }

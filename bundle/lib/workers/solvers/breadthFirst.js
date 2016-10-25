@@ -19,6 +19,10 @@ const nextSteps = (graph, pos, value) => {
 }
 
 const _spread = gradiant => (_graph, stack) => {
+	if (stack.length === 0) {
+		return { graph: _graph, stack, diff: [] }
+	}
+
 	const [thisStep, ...remainder] = stack,
 				{ pos, value } = thisStep,
 				color = gradiant(value),
@@ -48,12 +52,14 @@ export default (graph, start = [0, 1]) => {
 
 	const step = (graph, stack, pos) => () => {
 		const spreadRet = spread(graph, stack),
-					traceRet  = trace(spreadRet.graph, pos)
+		      traceRet  = trace(spreadRet.graph, pos)
+		      finished  = spreadRet.stack.length === 0 && traceRet.pos === null
+		      nextStep  = step(traceRet.graph, spreadRet.stack, traceRet.pos);
 
 		return {
 			graph : traceRet.graph,
 			diff  : new Set([...spreadRet.diff, ...spreadRet.diff]),
-			step  : step(traceRet.graph, spreadRet.stack, traceRet.diff)
+			step  : finished ? null : nextStep
 		};
 	}
 	return step(graph, [{ pos: start, value: 0 }])();
