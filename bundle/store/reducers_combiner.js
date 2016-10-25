@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import step from 'reducers/step';
+import phase from 'reducers/phase';
 import render from 'reducers/render';
 import solution from 'reducers/solution';
 import generation from 'reducers/generation';
@@ -12,6 +13,7 @@ import playbackMilliseconds from 'reducers/playback/milliseconds';
 
 export default combineReducers({
 	step,
+	phase,
 	render,
 	solution,
 	generation,

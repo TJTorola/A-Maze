@@ -6,12 +6,14 @@ import playPause from 'middleware/playPause';
 import stepper from 'middleware/stepper';
 import solver from 'middleware/solver';
 import render from 'middleware/render';
+import phase from 'middleware/phase';
 
 export default applyMiddleware(
 	initializer,
-	render,
+	phase,
 	generator,
 	solver,
 	playPause,
-	stepper
+	stepper,
+	render,
 );

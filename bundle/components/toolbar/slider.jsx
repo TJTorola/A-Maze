@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import Icon from 'utilities/icon';
 
 const mapStateToProps = state => ({
-	max : (state.generation && (state.generation.length - 1)),
-	step : state.step
+	max : state.phase.length - 1,
+	step : state.step || 0
 });
 
 const mapDispatchToProps = dispatch => ({
