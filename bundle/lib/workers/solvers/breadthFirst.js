@@ -1,7 +1,8 @@
 import { DIRS, DIR_DATA, DEFAULT_GRADIANT } from 'utilities/settings';
 import series from 'lib/graph/series';
-import inspector from 'lib/workers/tools/inspector';
+import inspector from 'lib/workers/tools/inspector'; 
 import gradiantPicker from 'utilities/gradiant_picker';
+import getLongestPathLength from 'lib/workers/tools/getLongestPathLength';
 
 const nextSteps = (graph, pos, value) => {
 	const [x, y]    = pos,
@@ -46,9 +47,10 @@ const _trace = tracer => (graph, pos) => {
 }
 
 export default (graph, start = [0, 1]) => {
-	const gradiant = gradiantPicker(500, DEFAULT_GRADIANT),
-				spread   = _spread(gradiant),
-				trace    = _trace(null);
+	const maxLength = getLongestPathLength(graph),
+	      gradiant  = gradiantPicker(maxLength, DEFAULT_GRADIANT),
+	      spread    = _spread(gradiant),
+	      trace     = _trace(null);
 
 	const step = (graph, stack, pos) => () => {
 		const spreadRet = spread(graph, stack),

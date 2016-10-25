@@ -11,10 +11,17 @@ const relativePos = (start, dir) => {
 }
 
 const _relativeCell = (graph, start) => dir => {
-	const pos = relativePos(start, dir),
-	      [x, y] = pos;
+	const pos    = relativePos(start, dir),
+	      [x, y] = pos,
+	      cell   = graph[x][y];
 
-	return graph[x][y];
+	return {
+		color : cell.color,
+		paths : cell.paths,
+		value : cell.value,
+		walls : cell.walls,
+		pos
+	};
 }
 
 const retValidDirs = (graph, pos) => {
