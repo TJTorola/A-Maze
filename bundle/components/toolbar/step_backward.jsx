@@ -6,7 +6,7 @@ import Icon from 'utilities/icon';
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-	jumpBackward: () => dispatch({ type: "JUMP_BACKWARD" })
+	prevPhase: () => dispatch({ type: "JUMP_BACK" })
 });
 
 const className = phase => {
@@ -20,8 +20,8 @@ const className = phase => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(props => (
+)(({ prevPhase }) => (
 	<span>
-		<Icon i="step_backward" />
+		<Icon i="step_backward" onClick={ prevPhase } />
 	</span>
 ))

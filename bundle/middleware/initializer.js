@@ -15,7 +15,7 @@ const initialize = ({ dispatch }) => {
 	dispatch({ type: "SET_RESOLUTION", resolution });
 	dispatch({ type: "GENERATE" });
 	dispatch({ type: "SOLVE" });
-	dispatch({ type: "SET_PHASE_SOLVING" })
+	dispatch({ type: "SET_PHASE_GENERATING" });
 }
 
 export default store => next => action => {
