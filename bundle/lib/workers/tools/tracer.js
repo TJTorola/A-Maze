@@ -13,9 +13,9 @@ export default (graph) => (pos, dir) => {
 	], graph);
 
 	return {
-		pos: nextPos,
-		graph: newGraph,
-		diff: new Set([pos, nextPos]),
+		pos   : nextPos,
+		graph : newGraph,
+		diff  : new Set([pos, nextPos]),
 		dir
-	}
+	};
 }

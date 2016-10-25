@@ -31,10 +31,11 @@ export default context => {
 		leftPath  : [ 'center', 'left' ]
 	}
 
-	const drawLine = (to, from) => {
+	const drawLine = (to, from, color = 'black') => {
 		context.beginPath();
 		context.moveTo(...to);
 		context.lineTo(...from);
+		context.strokeStyle = color;
 		context.stroke();
 	}
 
@@ -57,7 +58,7 @@ export default context => {
 
 		paths.forEach(dir => {
 			const line = lineNames[dir + "Path"].map(points);
-			drawLine(...line);
+			drawLine(...line, 'red');
 		});
 	}
 }
