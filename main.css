@@ -29,11 +29,12 @@ input {
 
 nav {
 	float: right;
+	padding: 0 10px;
 }
 
 svg {
 	cursor: pointer;
-	padding: 0 5px;
+	padding: 0 4px;
 	height: 1em;
 }
 
@@ -44,6 +45,13 @@ svg:hover {
 svg:active {
 	position: relative;
 	top: 1px;
+}
+
+svg.play-pause {
+	width: 26px;
+	height: 26px;
+	position: relative;
+	top: 5px;
 }
 
 svg.is-disabled {

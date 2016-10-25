@@ -34,6 +34,7 @@ export default connect(
 )(props => (
 	<span>
 		<Icon i={ props.playing ? 'pause' : 'play' } 
+			className="play-pause"
 			onClick={ playPause(props) } />
 	</span>
 ))
