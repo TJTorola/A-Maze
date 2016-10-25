@@ -1,13 +1,21 @@
 import { applyMiddleware } from 'redux';
 
-import step from 'middleware/step';
-import speed from 'middleware/speed';
+import initializer from 'middleware/initializer';
+import generator from 'middleware/generator';
 import playPause from 'middleware/playPause';
-import connector from 'middleware/connector';
+import stepper from 'middleware/stepper';
+import solver from 'middleware/solver';
+import render from 'middleware/render';
+import jumper from 'middleware/jumper';
+import phase from 'middleware/phase';
 
 export default applyMiddleware(
-	connector,
+	initializer,
+	phase,
+	generator,
+	solver,
 	playPause,
-	speed,
-	step
+	stepper,
+	jumper,
+	render,
 );

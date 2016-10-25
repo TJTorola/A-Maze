@@ -4,13 +4,12 @@ import { connect } from 'react-redux';
 import Icon from 'utilities/icon';
 
 const mapStateToProps = state => ({
-	playing : state.playing,
-	phase   : state.phase
+	playing : state.playback.playing
 });
 
 const mapDispatchToProps = dispatch => ({
-	play  : () => dispatch({ type: "PLAY" }),
-	pause : () => dispatch({ type: "PAUSE" })
+	play : () => dispatch({ type: "PLAY" }),
+	stop : () => dispatch({ type: "STOP" })
 });
 
 const className = phase => {
@@ -23,7 +22,7 @@ const className = phase => {
 
 const playPause = props => () => {
 	if (props.playing) {
-		props.pause();
+		props.stop();
 	} else {
 		props.play();
 	}
@@ -35,7 +34,7 @@ export default connect(
 )(props => (
 	<span>
 		<Icon i={ props.playing ? 'pause' : 'play' } 
-			className={ className(props.phase) }
+			className="play-pause"
 			onClick={ playPause(props) } />
 	</span>
 ))

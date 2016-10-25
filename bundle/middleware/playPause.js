@@ -1,21 +1,38 @@
-const play = ({ dispatch, getState }) => {
-	const { worker, speed } = getState();
+import depthFirstGenerator from 'lib/workers/generators/depthFirst';
 
-	if (worker) {
-		worker.start(speed);
-		dispatch({ type: "PLAYING" });
+const takeStep = (dispatch, getState, maxStep) => () => {
+	const step = getState().step || 0;
+	if (0 <= step && step < maxStep) {
+		dispatch({ type: "NEXT_STEP" });
 	} else {
-		dispatch({ type: "GET_WORKER" });
-		dispatch({ type: "PLAY" });
+		dispatch({ type: "STOP" });
 	}
 }
 
-const pause = ({ dispatch, getState }) => {
-	const { worker } = getState();
+const play = ({ dispatch, getState }) => {
+	const { playback, phase, step } = getState(),
+	      { interval, milliseconds } = playback,
+	      maxStep = phase.length - 1;
 
-	if (worker) {
-		worker.stop();
+	if (step === maxStep) {
+		dispatch({ type: "NEXT_PHASE" });
+		dispatch({ type: "FIRST_STEP" });
+		dispatch({ type: "PLAY" });
+		return;
 	}
+
+	if (interval !== null) { clearInterval(interval); }
+
+	const newInterval = setInterval(takeStep(dispatch, getState, maxStep), milliseconds);
+	dispatch({ type: "SET_INTERVAL", interval: newInterval });
+	dispatch({ type: "PLAYING" });
+}
+
+const stop = ({ dispatch, getState }) => {
+	const { interval } = getState().playback;
+
+	clearInterval(interval);
+	dispatch({ type: "CLEAR_INTERVAL" });
 	dispatch({ type: "STOPPED" });
 }
 
@@ -24,8 +41,8 @@ export default store => next => action => {
 		case "PLAY":
 			play(store);
 			break;
-		case "PAUSE":
-			pause(store);
+		case "STOP":
+			stop(store);
 			break;
 	}
 	return next(action);

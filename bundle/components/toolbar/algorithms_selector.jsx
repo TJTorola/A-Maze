@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { ALGORITHMS } from 'utilities/constants';
+import { ALGORITHMS } from 'utilities/settings';
 
-const mapStateToProps = state => ({
-	generated: state.phase.generated
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
 	setAlgorithm: algorithm => dispatch({ type: "SET_ALGORITHM", algorithm })
@@ -21,12 +19,12 @@ const algorithms = props => {
 		</option>
 	));
 }
-8
+
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(props => (
 	<select>
-		{ algorithms(props) }
+		
 	</select>
 ))

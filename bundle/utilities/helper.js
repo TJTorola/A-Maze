@@ -21,20 +21,3 @@ export const getContext = () => {
 
 	return context;
 }
-
-export const resizeCanvas = () => {
-	const canvas = document.querySelector('.Canvas');
-	const resizeCanvas = () => {
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
-		console.log(gcm(window.innerWidth, window.innerHeight));
-	}
-	resizeCanvas();
-	return resizeCanvas;
-}
-
-export const transpose = mtx => mtx[0].map(
-	(_, i) => (
-		mtx.map(row => row[i])
-	)
-)
