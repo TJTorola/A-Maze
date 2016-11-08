@@ -170,7 +170,7 @@ const lines = {
 
 Finally, in order to extract the points for being handed off to the canvas api, all you do is map the given lines object value with the returned function from returnPoint(). In all it looks like this.
 
-```javascipt
+```javascript
 export const renderCell = context => {
 	const lines = {
 		upWall    : [ 'topLeft', 'topRight' ],
