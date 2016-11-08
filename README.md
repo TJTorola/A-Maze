@@ -14,7 +14,7 @@ A-Maze uses React.js and Redux to manage user controls. It uses ES6 and function
 
 All of the maze generation and solution algorithms are built in the following streaming structure.
 
-```
+```javascript
 const step = (graph, start) => {
 	// appropriate stepping logic
 
@@ -27,7 +27,7 @@ const step = (graph, start) => {
 
 This format allows you to take any worker function and run it through a recursive function that can accumulate as many steps of the graph as you like. With the following function I run any worker until every step has been taken and return a three dimensonal array (2 spatial, 1 temporal) that can later be iterated through and rendered.
 
-```
+```javascript
 export default (worker, _graph) => {
 	const runner = (stack, _step) => {
 		if (_step === null) { return stack; }
