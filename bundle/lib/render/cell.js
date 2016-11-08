@@ -1,3 +1,16 @@
+export const buildCell = size => (graph, pos) => {
+	const [gx, gy] = pos;
+	const half = size / 2;
+	const x = (gx * size) + half;
+	const y = (gy * size) + half;
+
+	return {
+		center : [x, y],
+		size   : size,
+		data   : graph[gx][gy]
+	}
+}
+
 const returnPoint = cell => {
 	const half = cell.size / 2;
 	const pointDeltas = {
@@ -19,8 +32,8 @@ const returnPoint = cell => {
 	}
 }
 
-export default context => {
-	const lineNames = {
+export const renderCell = context => {
+	const lines = {
 		upWall    : [ 'topLeft', 'topRight' ],
 		rightWall : [ 'topRight', 'bottomRight' ],
 		downWall  : [ 'bottomRight', 'bottomLeft' ],
@@ -52,12 +65,12 @@ export default context => {
 		fill(color, points('topLeft'), size);
 
 		walls.forEach(dir => {
-			const line = lineNames[dir + "Wall"].map(points);
+			const line = lines[dir + "Wall"].map(points);
 			drawLine(...line);
 		});
 
 		paths.forEach(dir => {
-			const line = lineNames[dir + "Path"].map(points);
+			const line = lines[dir + "Path"].map(points);
 			drawLine(...line, 'red');
 		});
 	}

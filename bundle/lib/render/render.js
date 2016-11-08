@@ -1,17 +1,4 @@
-import renderCell from './cell';
-
-const buildCell = size => (graph, pos) => {
-	const [gx, gy] = pos;
-	const half = size / 2;
-	const x = (gx * size) + half;
-	const y = (gy * size) + half;
-
-	return {
-		center : [x, y],
-		size   : size,
-		data   : graph[gx][gy]
-	}
-}
+import { buildCell, renderCell } from './cell';
 
 export default (context, cellSize) => {
 	const renderer = renderCell(context);

@@ -96,7 +96,7 @@ export const setColor = (graph, pos, color) => {
 }
 ```
 
-For more extensive modifications, there is also a wrapper for reducing a graph called series.
+For more extensive modifications, there is also a wrapper for reducing a graph called series. Here the progress object is imported to contain all of the differant graph manipulation functions, such as setColor above.
 
 ```javascript
 import * as progress from './progress';
@@ -120,4 +120,98 @@ const newGraph = series([
 	['setColor', pos, color],
 	['setColor', nextPos, color]
 ], graph);
+```
+
+With the series function now I can do four seperate operations on the graph without mutating an exising variable or instantiating 4 differant constant variables.
+
+### Canvas Rendering
+
+The rendering process starts with a basic function that takes a graph and diff array, and if the diff array is present, it renders each changed cell. This allows for constant scaleing of the rendering process when there are constant changes to the graph between steps and the steps are being iterated through one at a time. So therefore this process could render a single step of an indefinatly large graph in constant time, withholding other constraints.
+
+The cell rendering process has some notable features, specifically the line drawing aspect. Any given cell has 8 differant lines that may be drawn on it. 4 walls, or 4 inner lines (from each side to the center). To do this there is first a function that will return the canvas coords of any requested point given a cell with a center point and a size.
+
+```javascript
+const returnPoint = cell => {
+	const half = cell.size / 2;
+	const pointDeltas = {
+		topLeft     : [ -half, -half ],
+		top         : [     0, -half ],
+		topRight    : [  half, -half ],
+		left        : [ -half,     0 ],
+		center      : [     0,     0 ],
+		right       : [  half,     0 ],
+		bottomLeft  : [ -half,  half ],
+		bottom      : [     0,  half ],
+		bottomRight : [  half,  half ]
+	}
+
+	return point => {
+		const [dx, dy] = pointDeltas[point];
+		const [cx, cy] = cell.center;
+		return [cx + dx, cy + dy];
+	}
+}
+```
+
+From there the cell rendering function defines each line as a set of two points each represented by string literals.
+
+```javascript
+const lines = {
+	upWall    : [ 'topLeft', 'topRight' ],
+	rightWall : [ 'topRight', 'bottomRight' ],
+	downWall  : [ 'bottomRight', 'bottomLeft' ],
+	leftWall  : [ 'bottomLeft', 'topLeft' ],
+	upPath    : [ 'center', 'top' ],
+	rightPath : [ 'center', 'right' ],
+	downPath  : [ 'center', 'bottom' ],
+	leftPath  : [ 'center', 'left' ]
+}
+```
+
+Finally, in order to extract the points for being handed off to the canvas api, all you do is map the given lines object value with the returned function from returnPoint(). In all it looks like this.
+
+```javascipt
+export const renderCell = context => {
+	const lines = {
+		upWall    : [ 'topLeft', 'topRight' ],
+		rightWall : [ 'topRight', 'bottomRight' ],
+		downWall  : [ 'bottomRight', 'bottomLeft' ],
+		leftWall  : [ 'bottomLeft', 'topLeft' ],
+		upPath    : [ 'center', 'top' ],
+		rightPath : [ 'center', 'right' ],
+		downPath  : [ 'center', 'bottom' ],
+		leftPath  : [ 'center', 'left' ]
+	}
+
+	const drawLine = (to, from, color = 'black') => {
+		context.beginPath();
+		context.moveTo(...to);
+		context.lineTo(...from);
+		context.strokeStyle = color;
+		context.stroke();
+	}
+
+	const fill = (color, topLeft, size) => {
+		context.fillStyle = color;
+		context.fillRect(...topLeft, size, size);
+	}
+
+	return cell => {
+		const { size } = cell;
+		const { walls, paths, color } = cell.data;
+		const points = returnPoint(cell);
+
+		fill(color, points('topLeft'), size);
+
+		walls.forEach(dir => {
+			const line = lines[dir + "Wall"].map(points);
+			drawLine(...line);
+		});
+
+		paths.forEach(dir => {
+			const line = lines[dir + "Path"].map(points);
+			drawLine(...line, 'red');
+		});
+	}
+}
 ```
