@@ -20,7 +20,8 @@ const step = (graph, start) => {
 
 	return {
 		step  : step(...),
-		graph : newGraph
+		graph : newGraph,
+		diff  : [...changedCells]
 	}
 }
 ```
@@ -43,9 +44,9 @@ export default (worker, _graph) => {
 ```
 
 **Notes:**
-- There is no tail-call recursion so in practice I acually use an imparitive approach with a while loop to avoid stack overflow errors.
+- There tail-call optimization has very little support in modern browsers, so in practice I acually use an imparitive approach that is functionally similar to avoid stack overflow errors.
 - Cell diffs are returned and stored along with graphs to allow optimized rendering.
-- Because of the immutable nature of the graphs a minimal amount of memory, representing only what has changed and parental pointers, is used from one step to the next.
+- Because of the immutable nature of the graphs a minimal amount of memory is used from one step to the next.
 
 **Benefits**
 - Total seperation of graph logic from timing logic.
@@ -57,3 +58,66 @@ export default (worker, _graph) => {
 - Though memory usage is minimized, it can still become excessive with larger graphs.
 
 You could avoid these drawbacks by either generating the graph as you need it and rendering it step by step. Or as I decided, keeping the graph resolution low enough that the performance issues don't arise.
+
+### Graph Manipulation
+
+The interface exposed for graph manipulation allows for simple modifications without mutating the graph. In the example below, a call to `setColor(graph, [0, 0], '#fff')` would return a new modified graph where the cell color at [0, 0] is now black. This is done by creating a newCell callback function and passing it into the `progressGraph()` function that passes it along to each pos asked for. To add flexability to the pos requested, the y and/or x coordinate can be set to null to and progress graph will apply the callback to every cell in the row and or coloumn provided.
+
+```javascript
+const progressGraph = (graph, pos, callback) => {
+	const [x, y] = pos || [null, null];
+
+	return graph.map((row, idx) => {
+		if (x === null || idx === x) {
+			return progressRow(row, y, callback);
+		} else {
+			return row;
+		}
+	});
+}
+
+const progressRow = (row, y, callback) => row.map((cell, idx) => {
+	if (y === null || idx === y) {
+		return callback(cell);
+	} else {
+		return cell;
+	}
+})
+
+export const setColor = (graph, pos, color) => {
+	const newCell = old => ({
+		color : color,
+		walls : old.walls,
+		paths : old.paths,
+		value : old.value
+	});
+
+	return progressGraph(graph, pos, newCell);
+}
+```
+
+For more extensive modifications, there is also a wrapper for reducing a graph called series.
+
+```javascript
+import * as progress from './progress';
+
+export default (steps, initialGraph) => {
+	const takeStep = (graph, step) => { 
+		const [funcName, ...args] = step;
+		return progress[funcName](graph, ...args);
+	}
+
+	return steps.reduce(takeStep, initialGraph);
+}
+```
+
+This takes a two-dimensonal array where in the first element is the string literal of the function to be called and the remainder of elements are the arguments being provided to the function. An example of this in action is in the builder tool, that allows you to move from one cell, to another and remove the walls between them and set both of their colors to white as well.
+
+```javascript
+const newGraph = series([
+	['removeWall', pos, dir],
+	['removeWall', nextPos, back],
+	['setColor', pos, color],
+	['setColor', nextPos, color]
+], graph);
+```
