@@ -61,7 +61,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	document.addEventListener('DOMContentLoaded', function () {
-		_reactDom2.default.render(_react2.default.createElement(_root2.default, null), document.querySelector('.Root'));
+		_reactDom2.default.render(_react2.default.createElement(_root2.default, null), document.querySelector('.root'));
 	});
 
 /***/ },
@@ -19778,7 +19778,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _configure = __webpack_require__(192);
+	var _configure = __webpack_require__(193);
 	
 	var _configure2 = _interopRequireDefault(_configure);
 	
@@ -21417,14 +21417,27 @@
 	
 	var _main2 = _interopRequireDefault(_main);
 	
+	var _main3 = __webpack_require__(192);
+	
+	var _main4 = _interopRequireDefault(_main3);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = function () {
 		return _react2.default.createElement(
 			'div',
-			null,
+			{ className: 'react-wrapper' },
 			_react2.default.createElement(_main2.default, null),
-			_react2.default.createElement('canvas', { className: 'Canvas' })
+			_react2.default.createElement(
+				'main',
+				null,
+				_react2.default.createElement(_main4.default, null),
+				_react2.default.createElement(
+					'section',
+					null,
+					_react2.default.createElement('canvas', { className: 'Canvas' })
+				)
+			)
 		);
 	};
 
@@ -21778,21 +21791,14 @@
 		value: true
 	});
 	
-	var _redux = __webpack_require__(167);
+	var _react = __webpack_require__(1);
 	
-	var _reducers_combiner = __webpack_require__(193);
-	
-	var _reducers_combiner2 = _interopRequireDefault(_reducers_combiner);
-	
-	var _middleware_combiner = __webpack_require__(203);
-	
-	var _middleware_combiner2 = _interopRequireDefault(_middleware_combiner);
+	var _react2 = _interopRequireDefault(_react);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = function () {
-		var preloadedState = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-		return (0, _redux.createStore)(_reducers_combiner2.default, preloadedState, _middleware_combiner2.default);
+		return _react2.default.createElement('aside', null);
 	};
 
 /***/ },
@@ -21807,39 +21813,66 @@
 	
 	var _redux = __webpack_require__(167);
 	
-	var _step = __webpack_require__(194);
+	var _reducers_combiner = __webpack_require__(194);
+	
+	var _reducers_combiner2 = _interopRequireDefault(_reducers_combiner);
+	
+	var _middleware_combiner = __webpack_require__(205);
+	
+	var _middleware_combiner2 = _interopRequireDefault(_middleware_combiner);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function () {
+		var preloadedState = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		return (0, _redux.createStore)(_reducers_combiner2.default, preloadedState, _middleware_combiner2.default);
+	};
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _redux = __webpack_require__(167);
+	
+	var _step = __webpack_require__(195);
 	
 	var _step2 = _interopRequireDefault(_step);
 	
-	var _phase = __webpack_require__(195);
+	var _phase = __webpack_require__(196);
 	
 	var _phase2 = _interopRequireDefault(_phase);
 	
-	var _render = __webpack_require__(196);
+	var _render = __webpack_require__(197);
 	
 	var _render2 = _interopRequireDefault(_render);
 	
-	var _solution = __webpack_require__(197);
+	var _solution = __webpack_require__(198);
 	
 	var _solution2 = _interopRequireDefault(_solution);
 	
-	var _generation = __webpack_require__(198);
+	var _generation = __webpack_require__(199);
 	
 	var _generation2 = _interopRequireDefault(_generation);
 	
-	var _resolution = __webpack_require__(199);
+	var _resolution = __webpack_require__(200);
 	
 	var _resolution2 = _interopRequireDefault(_resolution);
 	
-	var _playing = __webpack_require__(200);
+	var _playing = __webpack_require__(201);
 	
 	var _playing2 = _interopRequireDefault(_playing);
 	
-	var _interval = __webpack_require__(201);
+	var _interval = __webpack_require__(202);
 	
 	var _interval2 = _interopRequireDefault(_interval);
 	
-	var _milliseconds = __webpack_require__(202);
+	var _milliseconds = __webpack_require__(203);
 	
 	var _milliseconds2 = _interopRequireDefault(_milliseconds);
 	
@@ -21860,7 +21893,7 @@
 	});
 
 /***/ },
-/* 194 */
+/* 195 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21887,7 +21920,7 @@
 	};
 
 /***/ },
-/* 195 */
+/* 196 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21910,7 +21943,7 @@
 	};
 
 /***/ },
-/* 196 */
+/* 197 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21933,7 +21966,7 @@
 	};
 
 /***/ },
-/* 197 */
+/* 198 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21956,7 +21989,7 @@
 	};
 
 /***/ },
-/* 198 */
+/* 199 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21979,7 +22012,7 @@
 	};
 
 /***/ },
-/* 199 */
+/* 200 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22002,7 +22035,7 @@
 	};
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22025,7 +22058,7 @@
 	};
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22048,7 +22081,7 @@
 	};
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22057,7 +22090,7 @@
 		value: true
 	});
 	
-	var _settings = __webpack_require__(205);
+	var _settings = __webpack_require__(204);
 	
 	exports.default = function () {
 		var state = arguments.length <= 0 || arguments[0] === undefined ? _settings.INITIAL_SPEED : arguments[0];
@@ -22071,100 +22104,7 @@
 	};
 
 /***/ },
-/* 203 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _redux = __webpack_require__(167);
-	
-	var _initializer = __webpack_require__(204);
-	
-	var _initializer2 = _interopRequireDefault(_initializer);
-	
-	var _generator = __webpack_require__(206);
-	
-	var _generator2 = _interopRequireDefault(_generator);
-	
-	var _playPause = __webpack_require__(214);
-	
-	var _playPause2 = _interopRequireDefault(_playPause);
-	
-	var _stepper = __webpack_require__(215);
-	
-	var _stepper2 = _interopRequireDefault(_stepper);
-	
-	var _solver = __webpack_require__(216);
-	
-	var _solver2 = _interopRequireDefault(_solver);
-	
-	var _render = __webpack_require__(218);
-	
-	var _render2 = _interopRequireDefault(_render);
-	
-	var _jumper = __webpack_require__(221);
-	
-	var _jumper2 = _interopRequireDefault(_jumper);
-	
-	var _phase = __webpack_require__(222);
-	
-	var _phase2 = _interopRequireDefault(_phase);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = (0, _redux.applyMiddleware)(_initializer2.default, _phase2.default, _generator2.default, _solver2.default, _playPause2.default, _stepper2.default, _jumper2.default, _render2.default);
-
-/***/ },
 /* 204 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _settings = __webpack_require__(205);
-	
-	var getResolution = function getResolution() {
-		var width = window.innerWidth - 40,
-		    height = window.innerHeight - 60,
-		    x = width - width % _settings.DEFAULT_SIZE,
-		    y = height - height % _settings.DEFAULT_SIZE;
-	
-		return [x, y];
-	};
-	
-	var initialize = function initialize(_ref) {
-		var dispatch = _ref.dispatch;
-	
-		var resolution = getResolution();
-	
-		dispatch({ type: "SET_RESOLUTION", resolution: resolution });
-		dispatch({ type: "GENERATE" });
-		dispatch({ type: "SOLVE" });
-		dispatch({ type: "SET_PHASE_GENERATING" });
-	};
-	
-	exports.default = function (store) {
-		return function (next) {
-			return function (action) {
-				switch (action.type) {
-					case "INITIALIZE":
-						initialize(store);
-						break;
-				}
-				return next(action);
-			};
-		};
-	};
-
-/***/ },
-/* 205 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22216,7 +22156,7 @@
 	};
 
 /***/ },
-/* 206 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22225,25 +22165,118 @@
 		value: true
 	});
 	
-	var _settings = __webpack_require__(205);
+	var _redux = __webpack_require__(167);
 	
-	var _depthFirst = __webpack_require__(207);
+	var _initializer = __webpack_require__(206);
+	
+	var _initializer2 = _interopRequireDefault(_initializer);
+	
+	var _generator = __webpack_require__(207);
+	
+	var _generator2 = _interopRequireDefault(_generator);
+	
+	var _playPause = __webpack_require__(215);
+	
+	var _playPause2 = _interopRequireDefault(_playPause);
+	
+	var _stepper = __webpack_require__(216);
+	
+	var _stepper2 = _interopRequireDefault(_stepper);
+	
+	var _solver = __webpack_require__(217);
+	
+	var _solver2 = _interopRequireDefault(_solver);
+	
+	var _render = __webpack_require__(222);
+	
+	var _render2 = _interopRequireDefault(_render);
+	
+	var _jumper = __webpack_require__(225);
+	
+	var _jumper2 = _interopRequireDefault(_jumper);
+	
+	var _phase = __webpack_require__(226);
+	
+	var _phase2 = _interopRequireDefault(_phase);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = (0, _redux.applyMiddleware)(_initializer2.default, _phase2.default, _generator2.default, _solver2.default, _playPause2.default, _stepper2.default, _jumper2.default, _render2.default);
+
+/***/ },
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _settings = __webpack_require__(204);
+	
+	var getResolution = function getResolution() {
+		var width = window.innerWidth - 320,
+		    height = window.innerHeight - 60,
+		    x = width - width % _settings.DEFAULT_SIZE,
+		    y = height - height % _settings.DEFAULT_SIZE;
+	
+		return [x, y];
+	};
+	
+	var initialize = function initialize(_ref) {
+		var dispatch = _ref.dispatch;
+	
+		var resolution = getResolution();
+	
+		dispatch({ type: "SET_RESOLUTION", resolution: resolution });
+		dispatch({ type: "GENERATE" });
+		dispatch({ type: "SOLVE" });
+		dispatch({ type: "SET_PHASE_GENERATING" });
+	};
+	
+	exports.default = function (store) {
+		return function (next) {
+			return function (action) {
+				switch (action.type) {
+					case "INITIALIZE":
+						initialize(store);
+						break;
+				}
+				return next(action);
+			};
+		};
+	};
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _settings = __webpack_require__(204);
+	
+	var _depthFirst = __webpack_require__(208);
 	
 	var _depthFirst2 = _interopRequireDefault(_depthFirst);
 	
-	var _runner = __webpack_require__(212);
+	var _runner = __webpack_require__(213);
 	
 	var _runner2 = _interopRequireDefault(_runner);
 	
-	var _new = __webpack_require__(213);
+	var _new = __webpack_require__(214);
 	
 	var _new2 = _interopRequireDefault(_new);
 	
-	var _inspector2 = __webpack_require__(209);
+	var _inspector2 = __webpack_require__(210);
 	
 	var _inspector3 = _interopRequireDefault(_inspector2);
 	
-	var _builder2 = __webpack_require__(210);
+	var _builder2 = __webpack_require__(211);
 	
 	var _builder3 = _interopRequireDefault(_builder2);
 	
@@ -22310,7 +22343,7 @@
 	};
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22319,15 +22352,15 @@
 		value: true
 	});
 	
-	var _settings = __webpack_require__(205);
+	var _settings = __webpack_require__(204);
 	
-	var _progress = __webpack_require__(208);
+	var _progress = __webpack_require__(209);
 	
-	var _inspector = __webpack_require__(209);
+	var _inspector = __webpack_require__(210);
 	
 	var _inspector2 = _interopRequireDefault(_inspector);
 	
-	var _builder3 = __webpack_require__(210);
+	var _builder3 = __webpack_require__(211);
 	
 	var _builder4 = _interopRequireDefault(_builder3);
 	
@@ -22406,7 +22439,7 @@
 	};
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22418,7 +22451,7 @@
 	
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 	
-	var _settings = __webpack_require__(205);
+	var _settings = __webpack_require__(204);
 	
 	var progressGraph = function progressGraph(graph, pos, callback) {
 		var _ref = pos || [null, null];
@@ -22557,7 +22590,7 @@
 	};
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22568,7 +22601,7 @@
 	
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 	
-	var _settings = __webpack_require__(205);
+	var _settings = __webpack_require__(204);
 	
 	var DIRS = ['up', 'down', 'left', 'right'];
 	
@@ -22653,7 +22686,7 @@
 	};
 
 /***/ },
-/* 210 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22664,9 +22697,9 @@
 	
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 	
-	var _settings = __webpack_require__(205);
+	var _settings = __webpack_require__(204);
 	
-	var _series = __webpack_require__(211);
+	var _series = __webpack_require__(212);
 	
 	var _series2 = _interopRequireDefault(_series);
 	
@@ -22702,7 +22735,7 @@
 	};
 
 /***/ },
-/* 211 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22711,7 +22744,7 @@
 		value: true
 	});
 	
-	var _progress = __webpack_require__(208);
+	var _progress = __webpack_require__(209);
 	
 	var progress = _interopRequireWildcard(_progress);
 	
@@ -22736,7 +22769,7 @@
 	};
 
 /***/ },
-/* 212 */
+/* 213 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22783,7 +22816,7 @@
 	};
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22811,7 +22844,7 @@
 	};
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22820,7 +22853,7 @@
 		value: true
 	});
 	
-	var _depthFirst = __webpack_require__(207);
+	var _depthFirst = __webpack_require__(208);
 	
 	var _depthFirst2 = _interopRequireDefault(_depthFirst);
 	
@@ -22894,7 +22927,7 @@
 	};
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22978,7 +23011,7 @@
 	};
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22987,11 +23020,11 @@
 		value: true
 	});
 	
-	var _breadthFirst = __webpack_require__(217);
+	var _breadthFirst = __webpack_require__(218);
 	
 	var _breadthFirst2 = _interopRequireDefault(_breadthFirst);
 	
-	var _runner = __webpack_require__(212);
+	var _runner = __webpack_require__(213);
 	
 	var _runner2 = _interopRequireDefault(_runner);
 	
@@ -23023,7 +23056,7 @@
 	};
 
 /***/ },
-/* 217 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23034,25 +23067,25 @@
 	
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 	
-	var _settings = __webpack_require__(205);
+	var _settings = __webpack_require__(204);
 	
-	var _series = __webpack_require__(211);
+	var _series = __webpack_require__(212);
 	
 	var _series2 = _interopRequireDefault(_series);
 	
-	var _tracer = __webpack_require__(223);
+	var _tracer = __webpack_require__(219);
 	
 	var _tracer2 = _interopRequireDefault(_tracer);
 	
-	var _inspector = __webpack_require__(209);
+	var _inspector = __webpack_require__(210);
 	
 	var _inspector2 = _interopRequireDefault(_inspector);
 	
-	var _gradiant_picker = __webpack_require__(224);
+	var _gradiant_picker = __webpack_require__(220);
 	
 	var _gradiant_picker2 = _interopRequireDefault(_gradiant_picker);
 	
-	var _getLongestPathLength = __webpack_require__(225);
+	var _getLongestPathLength = __webpack_require__(221);
 	
 	var _getLongestPathLength2 = _interopRequireDefault(_getLongestPathLength);
 	
@@ -23161,80 +23194,6 @@
 	};
 
 /***/ },
-/* 218 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-	
-	var _settings = __webpack_require__(205);
-	
-	var _render2 = __webpack_require__(219);
-	
-	var _render3 = _interopRequireDefault(_render2);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var getRender = function getRender(_ref) {
-		var getState = _ref.getState;
-		var dispatch = _ref.dispatch;
-		var canvas = document.querySelector('.Canvas');
-	
-		var _getState$resolution = _slicedToArray(getState().resolution, 2);
-	
-		var x = _getState$resolution[0];
-		var y = _getState$resolution[1];
-		var context = canvas.getContext('2d');
-		var scale = window.devicePixelRatio;
-		var hdpSize = _settings.DEFAULT_SIZE / scale;
-	
-		canvas.width = x;
-		canvas.height = y;
-		context.scale(scale, scale);
-		dispatch({ type: "SET_RENDER", render: (0, _render3.default)(context, hdpSize) });
-	};
-	
-	var render = function render(_ref2, _ref3) {
-		var getState = _ref2.getState;
-		var dispatch = _ref2.dispatch;
-		var graph = _ref3.graph;
-		var diff = _ref3.diff;
-	
-		var _getState = getState();
-	
-		var render = _getState.render;
-	
-		if (render === null) {
-			dispatch({ type: "GET_RENDER" });
-			dispatch({ type: "RENDER", graph: graph, diff: diff });
-			return;
-		}
-	
-		render(graph, diff);
-	};
-	
-	exports.default = function (store) {
-		return function (next) {
-			return function (action) {
-				switch (action.type) {
-					case "GET_RENDER":
-						getRender(store);
-						break;
-					case "RENDER":
-						render(store, action);
-						break;
-				}
-				return next(action);
-			};
-		};
-	};
-
-/***/ },
 /* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -23246,277 +23205,9 @@
 	
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 	
-	var _cell = __webpack_require__(220);
+	var _settings = __webpack_require__(204);
 	
-	var _cell2 = _interopRequireDefault(_cell);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var buildCell = function buildCell(size) {
-		return function (graph, pos) {
-			var _pos = _slicedToArray(pos, 2);
-	
-			var gx = _pos[0];
-			var gy = _pos[1];
-	
-			var half = size / 2;
-			var x = gx * size + half;
-			var y = gy * size + half;
-	
-			return {
-				center: [x, y],
-				size: size,
-				data: graph[gx][gy]
-			};
-		};
-	};
-	
-	exports.default = function (context, cellSize) {
-		var renderer = (0, _cell2.default)(context);
-		var builder = buildCell(cellSize);
-	
-		var renderDiff = function renderDiff(graph, diff) {
-			diff.forEach(function (pos) {
-				var cell = builder(graph, pos);
-				renderer(cell);
-			});
-		};
-	
-		var renderAll = function renderAll(graph) {
-			graph.forEach(function (row, x) {
-				row.forEach(function (_, y) {
-					var cell = builder(graph, [x, y]);
-					renderer(cell);
-				});
-			});
-		};
-	
-		return function (graph, diff) {
-			if (diff) {
-				renderDiff(graph, diff);
-			} else {
-				renderAll(graph);
-			}
-		};
-	};
-
-/***/ },
-/* 220 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
-	var returnPoint = function returnPoint(cell) {
-		var half = cell.size / 2;
-		var pointDeltas = {
-			topLeft: [-half, -half],
-			top: [0, -half],
-			topRight: [half, -half],
-			left: [-half, 0],
-			center: [0, 0],
-			right: [half, 0],
-			bottomLeft: [-half, half],
-			bottom: [0, half],
-			bottomRight: [half, half]
-		};
-	
-		return function (point) {
-			var _pointDeltas$point = _slicedToArray(pointDeltas[point], 2);
-	
-			var dx = _pointDeltas$point[0];
-			var dy = _pointDeltas$point[1];
-	
-			var _cell$center = _slicedToArray(cell.center, 2);
-	
-			var cx = _cell$center[0];
-			var cy = _cell$center[1];
-	
-			return [cx + dx, cy + dy];
-		};
-	};
-	
-	exports.default = function (context) {
-		var lineNames = {
-			upWall: ['topLeft', 'topRight'],
-			rightWall: ['topRight', 'bottomRight'],
-			downWall: ['bottomRight', 'bottomLeft'],
-			leftWall: ['bottomLeft', 'topLeft'],
-			upPath: ['center', 'top'],
-			rightPath: ['center', 'right'],
-			downPath: ['center', 'bottom'],
-			leftPath: ['center', 'left']
-		};
-	
-		var drawLine = function drawLine(to, from) {
-			var color = arguments.length <= 2 || arguments[2] === undefined ? 'black' : arguments[2];
-	
-			context.beginPath();
-			context.moveTo.apply(context, _toConsumableArray(to));
-			context.lineTo.apply(context, _toConsumableArray(from));
-			context.strokeStyle = color;
-			context.stroke();
-		};
-	
-		var fill = function fill(color, topLeft, size) {
-			context.fillStyle = color;
-			context.fillRect.apply(context, _toConsumableArray(topLeft).concat([size, size]));
-		};
-	
-		return function (cell) {
-			var size = cell.size;
-			var _cell$data = cell.data;
-			var walls = _cell$data.walls;
-			var paths = _cell$data.paths;
-			var color = _cell$data.color;
-	
-			var points = returnPoint(cell);
-	
-			fill(color, points('topLeft'), size);
-	
-			walls.forEach(function (dir) {
-				var line = lineNames[dir + "Wall"].map(points);
-				drawLine.apply(undefined, _toConsumableArray(line));
-			});
-	
-			paths.forEach(function (dir) {
-				var line = lineNames[dir + "Path"].map(points);
-				drawLine.apply(undefined, _toConsumableArray(line).concat(['red']));
-			});
-		};
-	};
-
-/***/ },
-/* 221 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	var back = function back(_ref) {
-		var dispatch = _ref.dispatch;
-		var getState = _ref.getState;
-	
-		var _getState = getState();
-	
-		var step = _getState.step;
-	
-	
-		if (step === 0) {
-			dispatch({ type: "PREV_PHASE" });
-			dispatch({ type: "FIRST_STEP" });
-		} else {
-			dispatch({ type: "FIRST_STEP" });
-		}
-	};
-	
-	var forward = function forward(_ref2) {
-		var dispatch = _ref2.dispatch;
-		var getState = _ref2.getState;
-	
-		var _getState2 = getState();
-	
-		var phase = _getState2.phase;
-		var step = _getState2.step;
-		var maxStep = phase.length - 1;
-	
-		if (step === maxStep) {
-			dispatch({ type: "NEXT_PHASE" });
-			dispatch({ type: "LAST_STEP" });
-		} else {
-			dispatch({ type: "LAST_STEP" });
-		}
-	};
-	
-	exports.default = function (store) {
-		return function (next) {
-			return function (action) {
-				switch (action.type) {
-					case "JUMP_BACK":
-						back(store);
-						break;
-					case "JUMP_FORWARD":
-						forward(store);
-						break;
-				}
-				return next(action);
-			};
-		};
-	};
-
-/***/ },
-/* 222 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	var setSolving = function setSolving(_ref) {
-		var dispatch = _ref.dispatch;
-		var getState = _ref.getState;
-	
-		var _getState = getState();
-	
-		var solution = _getState.solution;
-	
-		dispatch({ type: "SET_PHASE", phase: solution });
-	};
-	
-	var setGenerating = function setGenerating(_ref2) {
-		var dispatch = _ref2.dispatch;
-		var getState = _ref2.getState;
-	
-		var _getState2 = getState();
-	
-		var generation = _getState2.generation;
-	
-		dispatch({ type: "SET_PHASE", phase: generation });
-	};
-	
-	exports.default = function (store) {
-		return function (next) {
-			return function (action) {
-				switch (action.type) {
-					case "NEXT_PHASE":
-					case "SET_PHASE_SOLVING":
-						setSolving(store);
-						break;
-					case "PREV_PHASE":
-					case "SET_PHASE_GENERATING":
-						setGenerating(store);
-						break;
-				}
-				return next(action);
-			};
-		};
-	};
-
-/***/ },
-/* 223 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-	
-	var _settings = __webpack_require__(205);
-	
-	var _series = __webpack_require__(211);
+	var _series = __webpack_require__(212);
 	
 	var _series2 = _interopRequireDefault(_series);
 	
@@ -23551,7 +23242,7 @@
 	};
 
 /***/ },
-/* 224 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23560,7 +23251,7 @@
 		value: true
 	});
 	
-	var _settings = __webpack_require__(205);
+	var _settings = __webpack_require__(204);
 	
 	var toPercent = function toPercent(value, max) {
 		if (value >= max) {
@@ -23671,7 +23362,7 @@
 	};
 
 /***/ },
-/* 225 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23680,11 +23371,11 @@
 		value: true
 	});
 	
-	var _inspector2 = __webpack_require__(209);
+	var _inspector2 = __webpack_require__(210);
 	
 	var _inspector3 = _interopRequireDefault(_inspector2);
 	
-	var _settings = __webpack_require__(205);
+	var _settings = __webpack_require__(204);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -23720,6 +23411,342 @@
 		}
 	
 		return val;
+	};
+
+/***/ },
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+	
+	var _settings = __webpack_require__(204);
+	
+	var _render2 = __webpack_require__(223);
+	
+	var _render3 = _interopRequireDefault(_render2);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var getRender = function getRender(_ref) {
+		var getState = _ref.getState;
+		var dispatch = _ref.dispatch;
+		var canvas = document.querySelector('.Canvas');
+	
+		var _getState$resolution = _slicedToArray(getState().resolution, 2);
+	
+		var x = _getState$resolution[0];
+		var y = _getState$resolution[1];
+		var context = canvas.getContext('2d');
+		var scale = window.devicePixelRatio;
+		var hdpSize = _settings.DEFAULT_SIZE / scale;
+	
+		canvas.width = x;
+		canvas.height = y;
+		context.scale(scale, scale);
+		dispatch({ type: "SET_RENDER", render: (0, _render3.default)(context, hdpSize) });
+	};
+	
+	var render = function render(_ref2, _ref3) {
+		var getState = _ref2.getState;
+		var dispatch = _ref2.dispatch;
+		var graph = _ref3.graph;
+		var diff = _ref3.diff;
+	
+		var _getState = getState();
+	
+		var render = _getState.render;
+	
+		if (render === null) {
+			dispatch({ type: "GET_RENDER" });
+			dispatch({ type: "RENDER", graph: graph, diff: diff });
+			return;
+		}
+	
+		render(graph, diff);
+	};
+	
+	exports.default = function (store) {
+		return function (next) {
+			return function (action) {
+				switch (action.type) {
+					case "GET_RENDER":
+						getRender(store);
+						break;
+					case "RENDER":
+						render(store, action);
+						break;
+				}
+				return next(action);
+			};
+		};
+	};
+
+/***/ },
+/* 223 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _cell = __webpack_require__(224);
+	
+	exports.default = function (context, cellSize) {
+		var renderer = (0, _cell.renderCell)(context);
+		var builder = (0, _cell.buildCell)(cellSize);
+	
+		var renderDiff = function renderDiff(graph, diff) {
+			diff.forEach(function (pos) {
+				var cell = builder(graph, pos);
+				renderer(cell);
+			});
+		};
+	
+		var renderAll = function renderAll(graph) {
+			graph.forEach(function (row, x) {
+				row.forEach(function (_, y) {
+					var cell = builder(graph, [x, y]);
+					renderer(cell);
+				});
+			});
+		};
+	
+		return function (graph, diff) {
+			if (diff) {
+				renderDiff(graph, diff);
+			} else {
+				renderAll(graph);
+			}
+		};
+	};
+
+/***/ },
+/* 224 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	var buildCell = exports.buildCell = function buildCell(size) {
+		return function (graph, pos) {
+			var _pos = _slicedToArray(pos, 2);
+	
+			var gx = _pos[0];
+			var gy = _pos[1];
+	
+			var half = size / 2;
+			var x = gx * size + half;
+			var y = gy * size + half;
+	
+			return {
+				center: [x, y],
+				size: size,
+				data: graph[gx][gy]
+			};
+		};
+	};
+	
+	var returnPoint = function returnPoint(cell) {
+		var half = cell.size / 2;
+		var pointDeltas = {
+			topLeft: [-half, -half],
+			top: [0, -half],
+			topRight: [half, -half],
+			left: [-half, 0],
+			center: [0, 0],
+			right: [half, 0],
+			bottomLeft: [-half, half],
+			bottom: [0, half],
+			bottomRight: [half, half]
+		};
+	
+		return function (point) {
+			var _pointDeltas$point = _slicedToArray(pointDeltas[point], 2);
+	
+			var dx = _pointDeltas$point[0];
+			var dy = _pointDeltas$point[1];
+	
+			var _cell$center = _slicedToArray(cell.center, 2);
+	
+			var cx = _cell$center[0];
+			var cy = _cell$center[1];
+	
+			return [cx + dx, cy + dy];
+		};
+	};
+	
+	var renderCell = exports.renderCell = function renderCell(context) {
+		var lines = {
+			upWall: ['topLeft', 'topRight'],
+			rightWall: ['topRight', 'bottomRight'],
+			downWall: ['bottomRight', 'bottomLeft'],
+			leftWall: ['bottomLeft', 'topLeft'],
+			upPath: ['center', 'top'],
+			rightPath: ['center', 'right'],
+			downPath: ['center', 'bottom'],
+			leftPath: ['center', 'left']
+		};
+	
+		var drawLine = function drawLine(to, from) {
+			var color = arguments.length <= 2 || arguments[2] === undefined ? 'black' : arguments[2];
+	
+			context.beginPath();
+			context.moveTo.apply(context, _toConsumableArray(to));
+			context.lineTo.apply(context, _toConsumableArray(from));
+			context.strokeStyle = color;
+			context.stroke();
+		};
+	
+		var fill = function fill(color, topLeft, size) {
+			context.fillStyle = color;
+			context.fillRect.apply(context, _toConsumableArray(topLeft).concat([size, size]));
+		};
+	
+		return function (cell) {
+			var size = cell.size;
+			var _cell$data = cell.data;
+			var walls = _cell$data.walls;
+			var paths = _cell$data.paths;
+			var color = _cell$data.color;
+	
+			var points = returnPoint(cell);
+	
+			fill(color, points('topLeft'), size);
+	
+			walls.forEach(function (dir) {
+				var line = lines[dir + "Wall"].map(points);
+				drawLine.apply(undefined, _toConsumableArray(line));
+			});
+	
+			paths.forEach(function (dir) {
+				var line = lines[dir + "Path"].map(points);
+				drawLine.apply(undefined, _toConsumableArray(line).concat(['red']));
+			});
+		};
+	};
+
+/***/ },
+/* 225 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var back = function back(_ref) {
+		var dispatch = _ref.dispatch;
+		var getState = _ref.getState;
+	
+		var _getState = getState();
+	
+		var step = _getState.step;
+	
+	
+		if (step === 0) {
+			dispatch({ type: "PREV_PHASE" });
+			dispatch({ type: "FIRST_STEP" });
+		} else {
+			dispatch({ type: "FIRST_STEP" });
+		}
+	};
+	
+	var forward = function forward(_ref2) {
+		var dispatch = _ref2.dispatch;
+		var getState = _ref2.getState;
+	
+		var _getState2 = getState();
+	
+		var phase = _getState2.phase;
+		var step = _getState2.step;
+		var maxStep = phase.length - 1;
+	
+		if (step === maxStep) {
+			dispatch({ type: "NEXT_PHASE" });
+			dispatch({ type: "LAST_STEP" });
+		} else {
+			dispatch({ type: "LAST_STEP" });
+		}
+	};
+	
+	exports.default = function (store) {
+		return function (next) {
+			return function (action) {
+				switch (action.type) {
+					case "JUMP_BACK":
+						back(store);
+						break;
+					case "JUMP_FORWARD":
+						forward(store);
+						break;
+				}
+				return next(action);
+			};
+		};
+	};
+
+/***/ },
+/* 226 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var setSolving = function setSolving(_ref) {
+		var dispatch = _ref.dispatch;
+		var getState = _ref.getState;
+	
+		var _getState = getState();
+	
+		var solution = _getState.solution;
+	
+		dispatch({ type: "SET_PHASE", phase: solution });
+	};
+	
+	var setGenerating = function setGenerating(_ref2) {
+		var dispatch = _ref2.dispatch;
+		var getState = _ref2.getState;
+	
+		var _getState2 = getState();
+	
+		var generation = _getState2.generation;
+	
+		dispatch({ type: "SET_PHASE", phase: generation });
+	};
+	
+	exports.default = function (store) {
+		return function (next) {
+			return function (action) {
+				switch (action.type) {
+					case "NEXT_PHASE":
+					case "SET_PHASE_SOLVING":
+						setSolving(store);
+						break;
+					case "PREV_PHASE":
+					case "SET_PHASE_GENERATING":
+						setGenerating(store);
+						break;
+				}
+				return next(action);
+			};
+		};
 	};
 
 /***/ }

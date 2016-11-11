@@ -4,5 +4,5 @@ import ReactDom from 'react-dom';
 import Root from 'components/root';
 
 document.addEventListener('DOMContentLoaded', () => {
-	ReactDom.render(<Root />, document.querySelector('.Root'));
+	ReactDom.render(<Root />, document.querySelector('.root'));
 });

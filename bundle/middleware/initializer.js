@@ -1,7 +1,7 @@
 import { DEFAULT_SIZE } from 'utilities/settings';
 
 const getResolution = () => {
-	const width = window.innerWidth - 40,
+	const width = window.innerWidth - 320,
 	      height = window.innerHeight - 60,
 	      x = width - (width % DEFAULT_SIZE),
 	      y = height - (height % DEFAULT_SIZE);

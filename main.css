@@ -3,13 +3,40 @@
 	padding: 0;
 }
 
+html {
+	height: 100%;
+}
+
 body {
+	height: 100%;
 	background: black;
 }
 
+.root {
+	height: 100%;
+}
+
+.react-wrapper {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	flex-grow: 1;
+	display: flex;
+}
+
+section {
+	overflow: scroll;
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
 canvas {
-	display: block;
-	margin: 20px auto 20px auto;
+	margin: auto;
 }
 
 header {
@@ -61,4 +88,10 @@ svg.is-disabled {
 
 svg.is-disabled:active {
 	position: static;
+}
+
+aside {
+	min-width: 300px;
+	background-color: white;
+	border-right: 1px solid black;
 }

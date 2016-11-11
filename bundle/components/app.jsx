@@ -1,10 +1,16 @@
 import React from 'react';
 
 import Toolbar from './toolbar/main';
+import Sidebar from './sidebar/main';
 
 export default () => (
-	<div>
+	<div className="react-wrapper">
 		<Toolbar />
-		<canvas className="Canvas" />
+		<main>
+			<Sidebar />
+			<section>
+				<canvas className="Canvas" />
+			</section>
+		</main>
 	</div>
 );
