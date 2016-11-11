@@ -8,6 +8,7 @@ html {
 }
 
 body {
+	font-family: Helvetica, Arial, sans-serif;
 	height: 100%;
 	background: black;
 }
@@ -90,8 +91,15 @@ svg.is-disabled:active {
 	position: static;
 }
 
+/* SIDEBAR */
+
 aside {
 	min-width: 300px;
 	background-color: white;
 	border-right: 1px solid black;
+}
+
+.speed-controls {
+	padding: 10px;
+	text-align: center;
 }
