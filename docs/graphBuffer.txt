@@ -1,0 +1,71 @@
+Graph Buffer Docs
+
+CellBuffer: 48 b upfront, + 48 b * update
+ 0000_0000_0000_0000 0000_0000_0000_0000 0000_0000_0000_0000
+| STEP up to 65k    | WL | LN | COLOR   | VALUE up to 65k   |
+| Render meta-info  | Render info       | Algorithm info    |
+
+step        = view[idx + 0]
+
+top_wall    = view[idx + 1] & (1 << 15)
+right_wall  = view[idx + 1] & (1 << 14)
+bottom_wall = view[idx + 1] & (1 << 13)
+left_wall   = view[idx + 1] & (1 << 12)
+
+top_line    = view[idx + 1] & (1 << 11)
+right_line  = view[idx + 1] & (1 << 10)
+bottom_line = view[idx + 1] & (1 << 9)
+left_line   = view[idx + 1] & (1 << 8)
+
+color       = view[idx + 1] & (256 - 1)
+
+value       = view[idx + 2]
+
+StepDiffIdxBuffer: 32 b * step
+0000_0000_0000_0000_0000_0000_0000_0000 0000_0000_0000_0000_0000_0000_0000_0000
+step1                                   step2                                  
+
+StepDiffs: 16 b * change
+0000_0000_0000_0000 0000_0000_0000_0000 0000_0000_0000_0000 0000_0000_0000_0000
+cellEdit1           cellEdit2           cellEdit3           cellEdit4          
+
+StepDiffIdxBuffer needs to be 32 bit in order to hold up to cellCount*step changes
+
+cell will init take 48 bits
+single change will increase size by 64 bits
+step will take 32 bits
+
+256 x 256 graph will have 65,536 cells
+init            =  3,145,728
+
+consider 2 changes per cell for the bfs solution
+65,536 steps    =  2,097,152
+131,092 changes =  8,389,888
+
+total           = 13,632,768.00 b
+                =  1,704,096.00 B
+                =      1,664.16 kB
+                =          1.63 mB
+
+consider cell * log(cell) changes per cell
+65,536 steps    =     2,097,152
+changes         = 1,073,741,824
+
+total           >=          128 mB
+
+Stream Buffer:
+ 0000_0000_0000_0000 0000_0000_0000_0000 0000_0000_0000_0000 0000_0000_0000_0000
+| loc               | val_old           | wl/ln O | wl/ln n | val_new           |
+
+0 init
+step will take 32
+change will take 64
+
+65,536 steps    = 2,097,152
+131,092 changes = 8,389,888
+
+total           = 10,487,040.00 b
+                =  1,310,880.00 B
+                =      1,275.18 kB
+                =          1.25 mB
+
